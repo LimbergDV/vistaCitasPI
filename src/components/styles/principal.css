@@ -1,0 +1,96 @@
+.textPrincipal {
+    font-size: 34px;
+    text-align: center;
+    color: black;
+    font-weight: bolder;
+}
+
+.secondText {
+    font-size: 24px;
+    text-align: left;
+    margin: 35px;
+    color: black;
+    font-weight: bolder;
+}
+
+.infoIcon{
+    font-size: 35px;
+}
+
+.formLogin .inputsPrincipal{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 50px 0;
+    font-weight: bolder;
+    color: black;
+}
+
+.formLogin .inputsSecundary {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 50px 0;
+    font-weight: bolder;
+    color: black;
+}
+
+.formLogin .inputsTertiary {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 50px 0;
+    font-weight: bolder;
+    color: black;
+}
+
+.formLogin input{
+    width: 13%;
+    border-radius: 12px;
+    height: 4vh;
+    background-color: #D9D9D9;
+    border: none;
+    color: black;
+}
+
+.formLogin input::placeholder{
+    color: #7c7676;
+    font-weight: bolder;
+}
+
+.formLogin select{
+    width: 13%;
+    border-radius: 12px;
+    height: 4vh;
+    background-color: #D9D9D9;
+    border: none;
+    color: black;
+}
+
+.thirdText{
+    font-size: 24px;
+    text-align: left;
+    margin-left: 9vh;
+    color: black;
+    font-weight: bolder;
+}
+
+
+
+
+
+
+/*.labelName{
+    display: flex;
+    text-align: right;
+}
+
+.lastName{
+    display: flex;
+    text-align: right;
+}
+
+.lastName2{
+    display: flex;
+    text-align: right;
+}*/
