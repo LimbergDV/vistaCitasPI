@@ -1,0 +1,121 @@
+.textPrincipal {
+    font-size: 34px;
+    text-align: center;
+    color: black;
+    font-weight: bolder;
+  }
+  
+  .secondText {
+    font-size: 24px;
+    text-align: left;
+    padding-left: 5%;
+    color: black;
+    font-weight: bolder;
+    width: 95%;
+    display: flex;
+    gap: 1%;
+    margin: 0;
+  }
+  
+  .btn1{
+    position: absolute;
+    left: 79%;
+    top: 23%;
+  }
+
+  .infoIcon {
+    font-size: 35px;
+  }
+  
+  .formLogin .inputsPrincipal {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 50px 0;
+    font-weight: bolder;
+    color: black;
+  }
+  
+  #date,
+  #date2,
+  #date3 {
+    padding: 19px 10px;
+  }
+  
+  .formLogin input {
+    width: 87%;
+    border-radius: 5px;
+    background-color: #d9d9d9;
+    box-shadow: 2px 2px 3px #7c7676;
+    color: black;
+    padding: 10px;
+    border: none;
+  }
+  
+  .formLogin input::placeholder {
+    color: #7c7676;
+  }
+  
+  .formLogin select {
+    width: 93%;
+    border-radius: 5px;
+    background-color: #d9d9d9;
+    border: none;
+    color: black;
+    padding: 10px;
+    box-shadow: 2px 2px 3px #7c7676;
+  }
+  
+  .sobre-paciente,
+  .elegir-cita {
+    width: 90%;
+    padding: 0 5% 5% 5%;
+  }
+  
+  .inputsPrincipal {
+    width: 100%;
+    display: flex;
+  }
+  
+  .inputsPrincipal > div {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+  }
+  
+  .direccion {
+    color: black;
+    margin-bottom: -2%;
+  }
+  
+  
+  .elegir-cita {
+    margin-top: 2%;
+    display: flex;
+    gap: 4%;
+  }
+  
+  .fechas,
+  .motivos {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+  }
+  .btn {
+    text-align: center;
+    width: 100%;
+    padding: 5%;
+  }
+  
+  label {
+    color: #000;
+    font-weight: bold;
+  }
+  
+  .motivosh3 {
+      color: #000;
+      margin-top: -2%;
+      margin-bottom: 0;
+  }

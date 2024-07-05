@@ -1,14 +1,22 @@
 import React from "react";
-import ResponsiveAppBar from "../NavBar/navBar";
-import "../styles/principal.css";
+import { useNavigate } from 'react-router-dom';
+import "../styles/formCitaRecepcionista.css";
 import { FaCircleInfo } from "react-icons/fa6";
 
-function Principal() {
+function FormCitaRecepcionista() {
+    const navigate = useNavigate();
+
+    const handleButtonClick = () => {
+        navigate('/citasAgendadas'); 
+      };
+
   return (
     <>
-      <ResponsiveAppBar />
       <div className="principalContent">
         <div className="formLogin">
+        <div className="btnCita">
+        <button className="btn1" onClick={handleButtonClick}>Ver Citas Agendadas 📅</button>
+        </div>
           <h1 className="textPrincipal">Programa una cita</h1>
           <form action="">
             <h3 className="secondText">
@@ -167,4 +175,4 @@ function Principal() {
   );
 }
 
-export default Principal;
+export default FormCitaRecepcionista;
