@@ -11,14 +11,7 @@ function App() {
 
   return (
     <>
-    <Router>
-      <Routes>
-        <Route path='/' element={<NavBar/>}/>
-        <Route path='/consulta' element={<PageCitaUser/>}/>
-        <Route path='/consultaRecepcionista' element={<PageCitaRecepcionista/>}/>
-        <Route path='/citasAgendadas' element={<PageCitasAgendadasRec/>}/>
-      </Routes>
-    </Router>
+    
     </>
   )
 }
