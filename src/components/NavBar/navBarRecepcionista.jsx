@@ -16,19 +16,18 @@ import HomeIcon from '@mui/icons-material/Home';
 import { SlChemistry } from "react-icons/sl";
 import { IoIosPerson } from "react-icons/io";
 import { TfiWrite } from "react-icons/tfi";
-import { IoPersonCircle } from "react-icons/io5";
+import { GrLogin } from "react-icons/gr";
 
 const pages = [
   { name: 'Inicio', icon: <HomeIcon /> },
   { name: 'Servicios', icon: <SlChemistry /> },
-  { name: 'Paciente', icon: <IoIosPerson />},
-  { name: 'Comenzar Consulta', icon: <TfiWrite /> },
-  { name: 'Iniciar Sesión', icon: <IoPersonCircle />}
+  { name: 'Citas', icon: <TfiWrite />},
+  { name: 'Salir', icon: <GrLogin />}
 ];
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-function NavBar() {
+function NavBarRecepcionista() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -166,4 +165,4 @@ function NavBar() {
   );
 }
 
-export default NavBar;
+export default NavBarRecepcionista;
