@@ -2,13 +2,15 @@ import React from "react";
 import ResponsiveAppBar from "../NavBar/navBar";
 import "../styles/principal.css";
 import { FaCircleInfo } from "react-icons/fa6";
-import { ImOpera } from "react-icons/im";
 import { useFetch } from "../../useFetch";
+import { useFetchPOST } from "../../useFetch";
+import { useFetchBLOB } from "../../useFetch";
 import { useState } from "react";
 
 function Principal() {
-  let token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjAyNDQwOTEsImV4cCI6MTcyMDI0NzY5MX0.hxS5YSC6-T2XRI9Ea8BOQBwg8me5rI5WMe0xDgV4-RI";
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjAzMjIyNTYsImV4cCI6MTcyMDMyNTg1Nn0.gDU5Mz_MKCR6Kkfp_pRu1Fc_M5YELw0X7o1UnD5uLVs";
+
   //Métodos GET usados en la página
   const options = {
     method: "GET",
@@ -33,13 +35,16 @@ function Principal() {
 
   //Construccion del módelo de datos para insertar una cita
 
+  //Valores predefinidos pensados para pasarse como parámetros
+  let direccion = 1;
+  let genero = 1;
   const [formPaciente, setFormPaciente] = useState({
     nombre: "",
     apellidoP: "",
     apellidoM: "",
     fecha_nacimiento: "",
-    id_genero: 1,
-    id_direccion: 1,
+    id_genero: genero,
+    id_direccion: direccion,
     telefono: "",
   });
 
@@ -55,14 +60,25 @@ function Principal() {
     horario_inicio: "",
   });
 
+  //Valores predefinidos pensados para pasarse como parámetros
+  let usuario = 1;
+  let paciente = 4;
+  let horario_inicio = 1;
+  let analisisN = 1;
+  let cotizacion = 1;
   const [formCita, setFormCita] = useState({
-    id_usuario: 1,
-    id_paciente: 1,
-    id_horario_atencion: 1,
-    id_analisis: 1,
-    solicitud_studios: "",
-    id_cotizacion: 1,
+    id_usuario: usuario,
+    id_paciente: paciente,
+    id_horario_atencion: horario_inicio,
+    id_analisis: analisisN,
+    id_cotizacion: cotizacion,
   });
+
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -86,7 +102,7 @@ function Principal() {
       setFormDireccion((prevState) => ({ ...prevState, [name]: value }));
     } else if (["fecha", "horario_inicio"].includes(name)) {
       setFormHorario((prevState) => ({ ...prevState, [name]: value }));
-    } else if (["solicitud_studios", "id_analisis"].includes(name)) {
+    } else if (["solicitud_estudios", "id_analisis"].includes(name)) {
       setFormCita((prevState) => ({ ...prevState, [name]: value }));
     }
   };
@@ -94,61 +110,25 @@ function Principal() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let url = "http://localhost:3000/direcciones/add/"; // Reemplaza con tu URL de API
+    //Insertar en la tabla direcciones
+    useFetchPOST("http://localhost:3000/direcciones/add/", formDireccion, token);
+    
+    //Insertar en la tabla horarios
+    useFetchPOST("http://localhost:3000/horarios/add/", formHorario, token);
+    
+    //Insertar en la tabla pacientes
+    useFetchPOST("http://localhost:3000/patients/add/", formPaciente, token);
+    
+    //Insertar en la tabla citas
+    const formData = new FormData();
+    formData.append('id_usuario', formCita.id_usuario);
+    formData.append('id_paciente', formCita.id_paciente);
+    formData.append('id_horario_atencion', formCita.id_horario_atencion);
+    formData.append('id_analisis', formCita.id_analisis);
+    formData.append('solicitud_estudios', file);
+    formData.append('id_cotizacion', formCita.id_cotizacion);
 
-    let options = {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formDireccion),
-    };
-
-    let response = await fetch(url, options);
-    console.log(response);
-
-    url = "http://localhost:3000/horarios/add/"; // Reemplaza con tu URL de API
-
-    options = {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formHorario),
-    };
-
-    response = await fetch(url, options);
-    console.log(response);
-
-    url = "http://localhost:3000/patients/add/"; // Reemplaza con tu URL de API
-
-    options = {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formPaciente),
-    };
-
-    response = await fetch(url, options);
-    console.log(response);
-
-    url = "http://localhost:3000/appointments/add/"; // Reemplaza con tu URL de API
-
-    options = {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formCita),
-    };
-
-    response = await fetch(url, options);
-    console.log(response);
+    useFetchBLOB("http://localhost:3000/appointments/add/", formData, token);
   };
 
   return (
@@ -361,15 +341,15 @@ function Principal() {
 
               <div className="motivos">
                 <h3 className="motivosh3">Añadir motivos</h3>
-                <label htmlFor="solicitud_studios" className="file">
-                  Sube tu solicitud de estudios medicos:{" "}
+                <label htmlFor="solicitud_estudios" className="file">
+                  Sube tu solicitud de estudios medicos:
                 </label>
                 <input
-                  name="solicitud_studios"
+                  name="solicitud_estudios"
                   type="file"
+                  accept=".pdf"
                   placeholder="Arrastra los archivos"
-                  value={formCita.solicitud_studios}
-                  onChange={handleChange}
+                  onChange={handleFileChange}
                 />
                 <label htmlFor="id_analisis" className="">
                   Elige tus análisis:{" "}
