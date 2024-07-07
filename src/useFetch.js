@@ -25,7 +25,7 @@ export function useFetchPOST(url, formData, token) {
 
   fetch(url, options).then((res) => {
     console.log(res);
-  })
+  });
 }
 
 //TODO para los métodos POST tabla CITAS(BLOB)
@@ -38,7 +38,6 @@ export function useFetchBLOB(url, formData, token) {
     body: formData,
   };
 
-  fetch(url, options).then((res) => {
-    console.log(res);
-  })
+  const res = fetch(url, options);
+  return res;
 }

@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import "../styles/formCitaRecepcionista.css";
 import { FaCircleInfo } from "react-icons/fa6";
 import { useFetch } from "../../useFetch";
 import { useFetchPOST } from "../../useFetch";
 import { useFetchBLOB } from "../../useFetch";
 import { useState } from "react";
-
 
 function FormCitaRecepcionista() {
   //Logica de navegacion
@@ -18,7 +18,7 @@ function FormCitaRecepcionista() {
 
   //TODO para el consumo de la API
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjAzMjg1MTAsImV4cCI6MTcyMDMzMjExMH0.fmHoKVSEA05871QRhYu19xT8SZCJk6ngvwa0D0Pg_Ps";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjAzMzIyMDcsImV4cCI6MTcyMDMzNTgwN30.oH59UBCd7hL5yPDb1PYEM9tDHYlId1u37fbWOSJkw8c";
 
   //Métodos GET usados en la página
   const options = {
@@ -57,9 +57,10 @@ function FormCitaRecepcionista() {
     telefono: "",
   });
 
+  let colonia=1;
   const [formDireccion, setFormDireccion] = useState({
     calle: "",
-    id_colonia: "",
+    id_colonia: colonia,
     numero: "",
     codigo_postal: "",
   });
@@ -141,7 +142,29 @@ function FormCitaRecepcionista() {
     formData.append("solicitud_estudios", file);
     formData.append("id_cotizacion", formCita.id_cotizacion);
 
-    useFetchBLOB("http://localhost:3000/appointments/add/", formData, token);
+    useFetchBLOB(
+      "http://localhost:3000/appointments/add/",
+      formData,
+      token
+    ).then((res) => {
+      if (res.ok) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Consulta agendada",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Ups Ocurrió un error",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
 
   return (
