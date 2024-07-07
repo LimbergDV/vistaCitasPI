@@ -9,7 +9,7 @@ import { useState } from "react";
 
 function FormCitaUser() {
   const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjAzMjIyNTYsImV4cCI6MTcyMDMyNTg1Nn0.gDU5Mz_MKCR6Kkfp_pRu1Fc_M5YELw0X7o1UnD5uLVs";
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjAzMjg1MTAsImV4cCI6MTcyMDMzMjExMH0.fmHoKVSEA05871QRhYu19xT8SZCJk6ngvwa0D0Pg_Ps";
 
   //Métodos GET usados en la página
   const options = {
@@ -111,22 +111,26 @@ function FormCitaUser() {
     e.preventDefault();
 
     //Insertar en la tabla direcciones
-    useFetchPOST("http://localhost:3000/direcciones/add/", formDireccion, token);
-    
+    useFetchPOST(
+      "http://localhost:3000/direcciones/add/",
+      formDireccion,
+      token
+    );
+
     //Insertar en la tabla horarios
     useFetchPOST("http://localhost:3000/horarios/add/", formHorario, token);
-    
+
     //Insertar en la tabla pacientes
     useFetchPOST("http://localhost:3000/patients/add/", formPaciente, token);
-    
+
     //Insertar en la tabla citas
     const formData = new FormData();
-    formData.append('id_usuario', formCita.id_usuario);
-    formData.append('id_paciente', formCita.id_paciente);
-    formData.append('id_horario_atencion', formCita.id_horario_atencion);
-    formData.append('id_analisis', formCita.id_analisis);
-    formData.append('solicitud_estudios', file);
-    formData.append('id_cotizacion', formCita.id_cotizacion);
+    formData.append("id_usuario", formCita.id_usuario);
+    formData.append("id_paciente", formCita.id_paciente);
+    formData.append("id_horario_atencion", formCita.id_horario_atencion);
+    formData.append("id_analisis", formCita.id_analisis);
+    formData.append("solicitud_estudios", file);
+    formData.append("id_cotizacion", formCita.id_cotizacion);
 
     useFetchBLOB("http://localhost:3000/appointments/add/", formData, token);
   };
