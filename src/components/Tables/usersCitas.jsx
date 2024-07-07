@@ -1,3 +1,4 @@
+import { configDotenv } from "dotenv";
 import React, { useState } from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -12,19 +13,32 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
+import { useFetch } from "../../useFetch";
+
+
+const currentDate = new Date();
+
+// Obtener componentes específicos
+const year = currentDate.getFullYear();
+const month = currentDate.getMonth() + 1; // Los meses empiezan desde 0
+const day = currentDate.getDate();
+const fecha_actual= `${year}-${month}-${day}`;
+
 const columns = [
-  { id: "name", label: "Nombre", minWidth: 170 },
-  { id: "email", label: "Correo Electrónico", minWidth: 170 },
-  { id: "registrationDate", label: "Fecha de Registro", minWidth: 170 },
+  { id: "nombre", label: "Paciente", minWidth: 170 },
+  { id: "telefono", label: "Teléfono", minWidth: 170 },
+  { id: "fecha", label: "Fecha de la cita", minWidth: 170 },
+  { id: "hora", label: "Hora", minWidth: 170 },
   { id: "actions", label: "Acciones", minWidth: 100 },
 ];
 
 const initialRows = [
   {
     id: 1,
-    name: "John Doe",
-    email: "john.doe@example.com",
-    registrationDate: "2023-01-01",
+    paciente: "Alexis Leonel Guzmán González",
+    telefono: "john.doe@example.com",
+    fecha: "07-20-2024",
+    hora: "00:15:45",
   },
   {
     id: 2,
@@ -35,6 +49,22 @@ const initialRows = [
 ];
 
 export default function StickyHeadTable() {
+  //Métodos GET usados en la página
+  const token = import.meta.env.VITE_TOKEN;
+
+  const options = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const { data } = useFetch(
+    `http://localhost:3000/appointments/getAll/${fecha_actual}`,
+    options
+  );
+
+  console.log(data);
+
   const [rows, setRows] = useState(initialRows);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -95,9 +125,10 @@ export default function StickyHeadTable() {
               .map((row) => {
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                    <TableCell>{row.name}</TableCell>
-                    <TableCell>{row.email}</TableCell>
-                    <TableCell>{row.registrationDate}</TableCell>
+                    <TableCell>{row.paciente}</TableCell>
+                    <TableCell>{row.telefono}</TableCell>
+                    <TableCell>{row.fecha}</TableCell>
+                    <TableCell>{row.hora}</TableCell>
                     <TableCell>
                       <Button onClick={() => handleOpenEditModal(row)}>
                         Actualizar

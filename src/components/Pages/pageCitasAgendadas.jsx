@@ -7,7 +7,7 @@ function PageCitasAgendadasRec(){
     return(
         <>
         <NavBarRecepcionista/>
-        <Title title="Usuarios con citas agendadas"/>
+        <Title title="Citas Agendadas"/>
         <StickyHeadTable/>
         </>
     )

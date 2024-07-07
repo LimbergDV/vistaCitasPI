@@ -1,3 +1,4 @@
+import { configDotenv } from "dotenv";
 import React from "react";
 import Swal from "sweetalert2";
 import "../styles/principal.css";
@@ -8,10 +9,8 @@ import { useFetchBLOB } from "../../useFetch";
 import { useState } from "react";
 
 function FormCitaUser() {
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjAzMzIyMDcsImV4cCI6MTcyMDMzNTgwN30.oH59UBCd7hL5yPDb1PYEM9tDHYlId1u37fbWOSJkw8c";
-
   //Métodos GET usados en la página
+  const token = import.meta.env.VITE_TOKEN;
   const options = {
     method: "GET",
     headers: {
@@ -114,15 +113,14 @@ function FormCitaUser() {
     //Insertar en la tabla direcciones
     useFetchPOST(
       "http://localhost:3000/direcciones/add/",
-      formDireccion,
-      token
+      formDireccion
     );
 
     //Insertar en la tabla horarios
-    useFetchPOST("http://localhost:3000/horarios/add/", formHorario, token);
+    useFetchPOST("http://localhost:3000/horarios/add/", formHorario);
 
     //Insertar en la tabla pacientes
-    useFetchPOST("http://localhost:3000/patients/add/", formPaciente, token);
+    useFetchPOST("http://localhost:3000/patients/add/", formPaciente);
 
     //Insertar en la tabla citas
     const formData = new FormData();
@@ -135,8 +133,7 @@ function FormCitaUser() {
 
     useFetchBLOB(
       "http://localhost:3000/appointments/add/",
-      formData,
-      token
+      formData
     ).then((res) => {
       if (res.ok) {
         Swal.fire({

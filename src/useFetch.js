@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+const token = import.meta.env.VITE_TOKEN;
 
 //Consumo de fetch para el módulo de Citas
 //TODO para los mtodos GET´s
@@ -13,7 +14,7 @@ export function useFetch(url, options) {
 }
 
 //TODO para los métodos POST
-export function useFetchPOST(url, formData, token) {
+export function useFetchPOST(url, formData) {
   const options = {
     method: "POST",
     headers: {
@@ -29,7 +30,7 @@ export function useFetchPOST(url, formData, token) {
 }
 
 //TODO para los métodos POST tabla CITAS(BLOB)
-export function useFetchBLOB(url, formData, token) {
+export function useFetchBLOB(url, formData) {
   const options = {
     method: "POST",
     headers: {
