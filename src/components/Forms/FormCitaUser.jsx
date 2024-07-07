@@ -7,8 +7,7 @@ import { useFetchPOST } from "../../useFetch";
 import { useFetchBLOB } from "../../useFetch";
 import { useState } from "react";
 
-<<<<<<< HEAD:src/components/Principal/principal.jsx
-function Principal() {
+function FormCitaUser() {
   const token =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjAzMjIyNTYsImV4cCI6MTcyMDMyNTg1Nn0.gDU5Mz_MKCR6Kkfp_pRu1Fc_M5YELw0X7o1UnD5uLVs";
 
@@ -132,9 +131,6 @@ function Principal() {
     useFetchBLOB("http://localhost:3000/appointments/add/", formData, token);
   };
 
-=======
-function FormCitaUser() {
->>>>>>> 230508ffed61f0f08bbad0afb1128a36706f9c0e:src/components/Forms/FormCitaUser.jsx
   return (
     <>
       <div className="principalContent">
