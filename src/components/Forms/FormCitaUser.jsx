@@ -3,35 +3,37 @@ import React from "react";
 import Swal from "sweetalert2";
 import "../styles/principal.css";
 import { FaCircleInfo } from "react-icons/fa6";
-import { useFetch } from "../../useFetch";
 import { useFetchPOST } from "../../useFetch";
 import { useFetchBLOB } from "../../useFetch";
 import { useState } from "react";
+import { fetchData } from "../../fetchData";
+
+//Métodos GET usados en la página
+const token = import.meta.env.VITE_TOKEN;
+const options = {
+  method: "GET",
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+};
+const generos = fetchData(
+  "http://localhost:3000/genders/getAll/",
+  options
+);
+
+const colonias = fetchData(
+  "http://localhost:3000/colonies/getAll/",
+  options
+);
+
+const analisis = fetchData(
+  "http://localhost:3000/analysis/getAll/",
+  options
+);
+
 
 function FormCitaUser() {
-  //Métodos GET usados en la página
-  const token = import.meta.env.VITE_TOKEN;
-  const options = {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-  const { data: generos } = useFetch(
-    "http://localhost:3000/genders/getAll/",
-    options
-  );
-
-  const { data: colonias } = useFetch(
-    "http://localhost:3000/colonies/getAll/",
-    options
-  );
-
-  const { data: analisis } = useFetch(
-    "http://localhost:3000/analysis/getAll/",
-    options
-  );
-
+  
   //Construccion del módelo de datos para insertar una cita
 
   //Valores predefinidos pensados para pasarse como parámetros
@@ -61,8 +63,8 @@ function FormCitaUser() {
   });
 
   //Valores predefinidos pensados para pasarse como parámetros
-  let usuario = 2;
-  let paciente = 1;
+  let usuario = 1;
+  let paciente = 4;
   let horario_inicio = 1;
   let analisisN = 1;
   let cotizacion = 1;
@@ -238,7 +240,7 @@ function FormCitaUser() {
                     value={formPaciente.id_genero}
                     onChange={handleChange}
                   >
-                    {generos?.map((genero) => (
+                    {generos.read()?.map((genero) => (
                       <option key={genero.id_genero} value={genero.id_genero}>
                         {genero.nombre_genero}
                       </option>
@@ -313,7 +315,7 @@ function FormCitaUser() {
                     value={formDireccion.id_colonia}
                     onChange={handleChange}
                   >
-                    {colonias?.map((colonia) => (
+                    {colonias.read()?.map((colonia) => (
                       <option
                         key={colonia.id_colonia}
                         value={colonia.id_colonia}
@@ -383,7 +385,7 @@ function FormCitaUser() {
                   value={formCita.id_analisis}
                   onChange={handleChange}
                 >
-                  {analisis?.map((analisis) => (
+                  {analisis.read()?.map((analisis) => (
                     <option
                       key={analisis.id_analisis}
                       value={analisis.id_analisis}
