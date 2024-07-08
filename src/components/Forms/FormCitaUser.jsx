@@ -61,8 +61,8 @@ function FormCitaUser() {
   });
 
   //Valores predefinidos pensados para pasarse como parámetros
-  let usuario = 1;
-  let paciente = 4;
+  let usuario = 2;
+  let paciente = 1;
   let horario_inicio = 1;
   let analisisN = 1;
   let cotizacion = 1;

@@ -70,8 +70,8 @@ function FormCitaRecepcionista() {
   });
 
   //Valores predefinidos pensados para pasarse como parámetros
-  let usuario = 1;
-  let paciente = 4;
+  let usuario = 2;
+  let paciente = 1;
   let horario_inicio = 1;
   let analisisN = 1;
   let cotizacion = 1;
@@ -152,6 +152,35 @@ function FormCitaRecepcionista() {
           showConfirmButton: false,
           timer: 1500,
         });
+
+        setFormPaciente({
+    nombre: "",
+    apellidoP: "",
+    apellidoM: "",
+    fecha_nacimiento: "",
+    id_genero: genero,
+    id_direccion: direccion,
+    telefono: "",
+  });
+  setFormDireccion({
+    calle: "",
+    id_colonia: colonia,
+    numero: "",
+    codigo_postal: "",
+  });
+  setFormHorario({
+    fecha: "",
+    horario_inicio: "",
+  });
+  setFormCita({
+    id_usuario: usuario,
+    id_paciente: paciente,
+    id_horario_atencion: horario_inicio,
+    id_analisis: analisisN,
+    id_cotizacion: cotizacion,
+  });
+  setFile({file: null});
+
       } else {
         Swal.fire({
           position: "center",
@@ -163,6 +192,8 @@ function FormCitaRecepcionista() {
       }
     });
   };
+
+  
 
   return (
     <>
@@ -351,6 +382,7 @@ function FormCitaRecepcionista() {
                   Fecha:
                 </label>
                 <input
+                min="2024-07-01" max="2024-07-31"
                   name="fecha"
                   id="date2"
                   type="date"
@@ -362,6 +394,7 @@ function FormCitaRecepcionista() {
                   Hora:{" "}
                 </label>
                 <input
+                  min="07:30" max="14:00"
                   name="horario_inicio"
                   id="date3"
                   type="time"
