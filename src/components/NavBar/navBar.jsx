@@ -100,24 +100,17 @@ function NavBar() {
             </Menu>
           </Box>
 
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
+          <Box sx={{ flexGrow: 50, display: { xs: 'flex', md: 'none' }, justifyContent: 'center' }}>
+            <Box
+              component="img"
+              src={logo}
+              alt="logo"
+              sx={{
+                height: 40,
+              }}
+            />
+          </Box>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center', marginTop: '12px' }}>
             {pages.map((page) => (
               <Button
