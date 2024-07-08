@@ -87,10 +87,6 @@ export default function StickyHeadTable() {
     setDeleteModalOpen(true);
   };
 
-  const handleOpenEditModal = (row) => {
-    setSelectedRow(row);
-    setEditModalOpen(true);
-  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -129,9 +125,6 @@ export default function StickyHeadTable() {
                     <TableCell>{row.fecha}</TableCell>
                     <TableCell>{row.hora}</TableCell>
                     <TableCell>
-                      <Button onClick={() => handleOpenEditModal(row)}>
-                        Actualizar
-                      </Button>
                       <Button onClick={() => handleOpenDeleteModal(row)}>
                         Eliminar
                       </Button>
