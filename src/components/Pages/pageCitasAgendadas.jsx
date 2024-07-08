@@ -8,7 +8,7 @@ function PageCitasAgendadasRec(){
     return(
         <>
         <NavBarRecepcionista/>
-        <Title title="Usuarios con citas agendadas"/>
+        <Title title="Citas Agendadas"/>
         <StickyHeadTable/>
         <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
         <Footer/>
@@ -16,4 +16,4 @@ function PageCitasAgendadasRec(){
     )
 }
 
-export default PageCitasAgendadasRec
+export default PageCitasAgendadasRec;

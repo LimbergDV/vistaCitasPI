@@ -15,14 +15,13 @@ import TextField from "@mui/material/TextField";
 
 import { useFetch } from "../../useFetch";
 
-
 const currentDate = new Date();
 
 // Obtener componentes específicos
 const year = currentDate.getFullYear();
 const month = currentDate.getMonth() + 1; // Los meses empiezan desde 0
 const day = currentDate.getDate();
-const fecha_actual= `${year}-${month}-${day}`;
+const fecha_actual = `${year}-${month}-${day}`;
 
 const columns = [
   { id: "nombre", label: "Paciente", minWidth: 170 },
@@ -32,38 +31,38 @@ const columns = [
   { id: "actions", label: "Acciones", minWidth: 100 },
 ];
 
-const initialRows = [
-  {
-    id: 1,
-    paciente: "Alexis Leonel Guzmán González",
-    telefono: "john.doe@example.com",
-    fecha: "07-20-2024",
-    hora: "00:15:45",
+const initialRows = [];
+
+//Métodos GET usados en la página
+const token = import.meta.env.VITE_TOKEN;
+
+const options = {
+  method: "GET",
+  headers: {
+    Authorization: `Bearer ${token}`,
   },
-  {
-    id: 2,
-    name: "Jane Smith",
-    email: "jane.smith@example.com",
-    registrationDate: "2023-02-15",
-  },
-];
+};
 
 export default function StickyHeadTable() {
-  //Métodos GET usados en la página
-  const token = import.meta.env.VITE_TOKEN;
 
-  const options = {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-  const { data } = useFetch(
+  const { data: citas } = useFetch(
     `http://localhost:3000/appointments/getAll/${fecha_actual}`,
     options
   );
-
-  console.log(data);
+  
+  console.log(citas);
+  
+  let i = 1;
+  citas.map((cita) => {
+    initialRows.push({
+      id: i,
+      paciente: `${cita.nombre} ${cita.apellidoP} ${cita.apellidoM}`,
+      telefono: `${cita.telefono}`,
+      fecha: `${cita.fecha}`,
+      hora: `${cita.horario_inicio}`,
+    });
+    i++;
+  });
 
   const [rows, setRows] = useState(initialRows);
   const [page, setPage] = useState(0);

@@ -10,6 +10,7 @@ export function useFetch(url, options) {
       .then((response) => response.json())
       .then((json) => setData(json));
   }, []);
+
   return { data };
 }
 
