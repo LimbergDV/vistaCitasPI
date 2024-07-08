@@ -8,7 +8,9 @@ function PageCitasAgendadasRec(){
     return(
         <>
         <NavBarRecepcionista/>
+        <br /> <br />
         <Title title="Citas Agendadas"/>
+        <br />
         <StickyHeadTable/>
         <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
         <Footer/>

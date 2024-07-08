@@ -94,8 +94,8 @@ export default function TableEstudios1() {
   };
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer>
+    <Paper sx={{ width: "100%", height: "100vh",overflow: "hidden" }}>
+      <TableContainer sx={{ width: "100%", height: "100vh" }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -129,15 +129,6 @@ export default function TableEstudios1() {
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
 
       {/* Add Confirmation Modal */}
       <Modal
