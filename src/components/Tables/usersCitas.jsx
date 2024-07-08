@@ -1,4 +1,3 @@
-import { configDotenv } from "dotenv";
 import React, { useState } from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -13,7 +12,8 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
-import { useFetch } from "../../useFetch";
+import { fetchData } from "../../fetchData";
+import { Suspense } from "react";
 
 const currentDate = new Date();
 
@@ -22,16 +22,6 @@ const year = currentDate.getFullYear();
 const month = currentDate.getMonth() + 1; // Los meses empiezan desde 0
 const day = currentDate.getDate();
 const fecha_actual = `${year}-${month}-${day}`;
-
-const columns = [
-  { id: "nombre", label: "Paciente", minWidth: 170 },
-  { id: "telefono", label: "Teléfono", minWidth: 170 },
-  { id: "fecha", label: "Fecha de la cita", minWidth: 170 },
-  { id: "hora", label: "Hora", minWidth: 170 },
-  { id: "actions", label: "Acciones", minWidth: 100 },
-];
-
-const initialRows = [];
 
 //Métodos GET usados en la página
 const token = import.meta.env.VITE_TOKEN;
@@ -43,17 +33,26 @@ const options = {
   },
 };
 
-export default function StickyHeadTable() {
+const data = fetchData(
+  `http://localhost:3000/appointments/getAll/${fecha_actual}`,
+  options
+);
 
-  const { data: citas } = useFetch(
-    `http://localhost:3000/appointments/getAll/${fecha_actual}`,
-    options
-  );
-  
-  console.log(citas);
+const columns = [
+  { id: "nombre", label: "Paciente", minWidth: 170 },
+  { id: "telefono", label: "Teléfono", minWidth: 170 },
+  { id: "fecha", label: "Fecha de la cita", minWidth: 170 },
+  { id: "hora", label: "Hora", minWidth: 170 },
+  { id: "actions", label: "Acciones", minWidth: 100 },
+];
+
+const initialRows = [];
+
+export default function StickyHeadTable() {
+  console.log(data.read());
   
   let i = 1;
-  citas.map((cita) => {
+  data.read().map((cita) => {
     initialRows.push({
       id: i,
       paciente: `${cita.nombre} ${cita.apellidoP} ${cita.apellidoM}`,

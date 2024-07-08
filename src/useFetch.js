@@ -1,18 +1,4 @@
-import { useState, useEffect } from "react";
 const token = import.meta.env.VITE_TOKEN;
-
-//Consumo de fetch para el módulo de Citas
-//TODO para los mtodos GET´s
-export function useFetch(url, options) {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    fetch(url, options)
-      .then((response) => response.json())
-      .then((json) => setData(json));
-  }, []);
-
-  return { data };
-}
 
 //TODO para los métodos POST
 export function useFetchPOST(url, formData) {

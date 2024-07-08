@@ -4,42 +4,42 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "../styles/formCitaRecepcionista.css";
 import { FaCircleInfo } from "react-icons/fa6";
-import { useFetch } from "../../useFetch";
+import { fetchData } from "../../fetchData";
 import { useFetchPOST } from "../../useFetch";
 import { useFetchBLOB } from "../../useFetch";
 import { useState } from "react";
 
+//Métodos GET usados en la página
+const token = import.meta.env.VITE_TOKEN;
+const options = {
+  method: "GET",
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+};
+const generos = fetchData(
+  "http://localhost:3000/genders/getAll/",
+  options
+);
+
+const colonias = fetchData(
+  "http://localhost:3000/colonies/getAll/",
+  options
+);
+
+const analisis = fetchData(
+  "http://localhost:3000/analysis/getAll/",
+  options
+);
+
+
 function FormCitaRecepcionista() {
   //Logica de navegacion
-  const token = import.meta.env.VITE_TOKEN;
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
     navigate("/citasAgendadas");
-  };
-
-  //TODO para el consumo de la API
-  //Métodos GET usados en la página
-  const options = {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-  const { data: generos } = useFetch(
-    "http://localhost:3000/genders/getAll/",
-    options
-  );
-
-  const { data: colonias } = useFetch(
-    "http://localhost:3000/colonies/getAll/",
-    options
-  );
-
-  const { data: analisis } = useFetch(
-    "http://localhost:3000/analysis/getAll/",
-    options
-  );
+  };
 
   //Construccion del módelo de datos para insertar una cita
 
@@ -283,7 +283,7 @@ function FormCitaRecepcionista() {
                     value={formPaciente.id_genero}
                     onChange={handleChange}
                   >
-                    {generos?.map((genero) => (
+                    {generos.read()?.map((genero) => (
                       <option key={genero.id_genero} value={genero.id_genero}>
                         {genero.nombre_genero}
                       </option>
@@ -358,7 +358,7 @@ function FormCitaRecepcionista() {
                     value={formDireccion.id_colonia}
                     onChange={handleChange}
                   >
-                    {colonias?.map((colonia) => (
+                    {colonias.read()?.map((colonia) => (
                       <option
                         key={colonia.id_colonia}
                         value={colonia.id_colonia}
@@ -430,7 +430,7 @@ function FormCitaRecepcionista() {
                   value={formCita.id_analisis}
                   onChange={handleChange}
                 >
-                  {analisis?.map((analisis) => (
+                  {analisis.read()?.map((analisis) => (
                     <option
                       key={analisis.id_analisis}
                       value={analisis.id_analisis}
