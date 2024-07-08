@@ -7,6 +7,13 @@ import PageCitaUser from './components/Pages/pageCitaUser.jsx'
 import PageCitaRecepcionista from './components/Pages/pageCitaRecepcionista.jsx'
 import PageCitasAgendadasRec from './components/Pages/pageCitasAgendadas.jsx'
 import PageCatalogoServicios from './components/Pages/pageCatalogoServicios.jsx'
+import PageEstudios1 from './components/Pages/pageQuimicaClinica.jsx'
+import PageQuimicaClinica from './components/Pages/pageQuimicaClinica.jsx'
+import PageBiologiaMolecular from './components/Pages/pageBiologiaMolecular.jsx'
+import PageAlergenos from './components/Pages/pageAlergenos.jsx'
+import PageMicrobiologiaMedica from './components/Pages/pageMicrobiologiaMedica.jsx'
+import PageMicrobiologiaSanitaria from './components/Pages/pageMicrobiologiaSanitaria.jsx'
+import PageCitologia from './components/Pages/pageCitologia.jsx'
 
 const router = createBrowserRouter([
   {
@@ -29,6 +36,36 @@ const router = createBrowserRouter([
   {
     path: '/catalogo',
     element: <PageCatalogoServicios/>
+  },
+
+  {
+    path: '/quimicaClinica',
+    element: <PageQuimicaClinica/>
+  },
+
+  {
+    path: '/biologiaMolecular',
+    element: <PageBiologiaMolecular/>
+  },
+
+  {
+    path: '/alergenos',
+    element: <PageAlergenos/>
+  },
+
+  {
+    path: '/microbiologiaMedica',
+    element: <PageMicrobiologiaMedica/>
+  },
+
+  {
+    path: '/microbiologiaSanitaria',
+    element: <PageMicrobiologiaSanitaria/>
+  },
+
+  {
+    path: '/citologia&histopatologia',
+    element: <PageCitologia/>
   },
 
 
