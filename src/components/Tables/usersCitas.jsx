@@ -48,19 +48,30 @@ const columns = [
 
 const initialRows = [];
 
+const deleteCita = (id_cita) => {
+  const options = {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const res = fetchData(
+    `http://localhost:3000/appointments/delete/${id_cita}`,
+    options
+  );
+};
+
 export default function StickyHeadTable() {
   console.log(data.read());
-  
-  let i = 1;
+
   data.read().map((cita) => {
     initialRows.push({
-      id: i,
+      id: cita.id_cita,
       paciente: `${cita.nombre} ${cita.apellidoP} ${cita.apellidoM}`,
       telefono: `${cita.telefono}`,
       fecha: `${cita.fecha}`,
       hora: `${cita.horario_inicio}`,
     });
-    i++;
   });
 
   const [rows, setRows] = useState(initialRows);
@@ -70,10 +81,17 @@ export default function StickyHeadTable() {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
 
+  
+
   const handleDelete = () => {
-    const updatedRows = rows.filter((row) => row.id !== selectedRow.id);
-    setRows(updatedRows);
+    let row_id;
+    const updatedRows = rows.filter((row) => {
+      row.id !== selectedRow.id;
+      row_id = row.id;
+    });
     setDeleteModalOpen(false);
+    setRows(updatedRows);
+    deleteCita(row_id);
   };
 
   const handleEdit = () => {
@@ -86,7 +104,6 @@ export default function StickyHeadTable() {
     setDeleteModalOpen(true);
   };
 
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -97,7 +114,7 @@ export default function StickyHeadTable() {
   };
 
   return (
-    <Paper sx={{ width: "100%", height: "100vh",overflow: "hidden" }}>
+    <Paper sx={{ width: "100%", height: "100vh", overflow: "hidden" }}>
       <TableContainer sx={{ width: "100%", height: "100vh" }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -134,7 +151,6 @@ export default function StickyHeadTable() {
           </TableBody>
         </Table>
       </TableContainer>
-      
 
       {/* Delete Confirmation Modal */}
       <Modal
