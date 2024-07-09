@@ -11,7 +11,7 @@ function PageCitologia(){
         <br />
         <Title title="Citología e Histopatología"/>
         <br />
-        <TableEstudios1/>
+        <TableEstudios1 id_categoria = "6"/>
         <br /> <br />
         <Footer/>
         </>

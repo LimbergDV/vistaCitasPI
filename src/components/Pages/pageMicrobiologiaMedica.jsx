@@ -11,7 +11,7 @@ function PageMicrobiologiaMedica(){
         <br />
         <Title title="Microbiología Médica"/>
         <br />
-        <TableEstudios1/>
+        <TableEstudios1 id_categoria = "4"/>
         <br /> <br />
         <Footer/>
         </>

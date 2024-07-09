@@ -11,7 +11,7 @@ function PageMicrobiologiaSanitaria(){
         <br />
         <Title title="Microbiología Sanitaria"/>
         <br />
-        <TableEstudios1/>
+        <TableEstudios1 id_categoria = "3"/>
         <br /> <br />
         <Footer/>
         </>

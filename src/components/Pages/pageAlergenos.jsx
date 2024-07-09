@@ -9,9 +9,10 @@ function PageAlergenos(){
         <>
         <NavBar/>
         <br />
-        <Title title="Alergenos"/>
+        <Title title="Alérgenos"/>
         <br />
-        <TableEstudios1/>
+        <SearchNav/>
+        <TableEstudios1 id_categoria = "3"/>
         <br /> <br />
         <Footer/>
         </>
