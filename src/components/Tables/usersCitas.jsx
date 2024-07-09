@@ -44,6 +44,7 @@ const columns = [
   { id: "telefono", label: "Teléfono", minWidth: 170 },
   { id: "fecha", label: "Fecha de la cita", minWidth: 170 },
   { id: "hora", label: "Hora", minWidth: 170 },
+  { id: "file", label: "Solicitud de Estudios", minWidth: 170 },
   { id: "actions", label: "Acciones", minWidth: 100 },
 ];
 
@@ -72,6 +73,34 @@ const fecha = (dateString) => {
 
   // Formatear la fecha
   return `${day} / ${month} / ${year}`;
+}
+
+const descargar = async (id_cita) => {
+  try {
+    const response = await fetch(`http://localhost:3000/appointments/getSolicitud/${id_cita}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`, // Si necesitas autenticación
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Error fetching PDF');
+    }
+
+
+  const blob = await response.blob();
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'yourfile.pdf';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 export default function StickyHeadTable() {
@@ -154,6 +183,11 @@ export default function StickyHeadTable() {
                   <TableCell>{cita.telefono}</TableCell>
                   <TableCell>{fecha(cita.fecha)}</TableCell>
                   <TableCell>{cita.horario_inicio}</TableCell>
+                  <TableCell>
+                    <Button onClick={() => descargar(cita.id_cita)}>
+                      Descargar
+                    </Button>
+                  </TableCell>
                   <TableCell>
                     <Button onClick={() => handleOpenDeleteModal(cita.id_cita)}>
                       Cancelar
