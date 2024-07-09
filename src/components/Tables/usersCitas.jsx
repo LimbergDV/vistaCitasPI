@@ -93,7 +93,7 @@ const descargar = async (id_cita) => {
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'yourfile.pdf';
+  a.download = 'Solicitud.pdf';
   document.body.appendChild(a);
   a.click();
   a.remove();

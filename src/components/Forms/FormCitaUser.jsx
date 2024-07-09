@@ -16,43 +16,28 @@ const options = {
     Authorization: `Bearer ${token}`,
   },
 };
-const generos = fetchData(
-  "http://localhost:3000/genders/getAll/",
-  options
-);
+const generos = fetchData("http://localhost:3000/genders/getAll/", options);
 
-const colonias = fetchData(
-  "http://localhost:3000/colonies/getAll/",
-  options
-);
+const colonias = fetchData("http://localhost:3000/colonies/getAll/", options);
 
-const analisis = fetchData(
-  "http://localhost:3000/analysis/getAll/",
-  options
-);
-
+const analisis = fetchData("http://localhost:3000/analysis/getAll/", options);
 
 function FormCitaUser() {
-  
   //Construccion del módelo de datos para insertar una cita
 
   //Valores predefinidos pensados para pasarse como parámetros
-  let direccion = 1;
-  let genero = 1;
   const [formPaciente, setFormPaciente] = useState({
     nombre: "",
     apellidoP: "",
     apellidoM: "",
     fecha_nacimiento: "",
-    id_genero: genero,
-    id_direccion: direccion,
+    id_genero: "",
     telefono: "",
   });
 
-  let colonia=1;
   const [formDireccion, setFormDireccion] = useState({
     calle: "",
-    id_colonia: colonia,
+    id_colonia: "",
     numero: "",
     codigo_postal: "",
   });
@@ -64,16 +49,10 @@ function FormCitaUser() {
 
   //Valores predefinidos pensados para pasarse como parámetros
   let usuario = 2;
-  let paciente = 4;
-  let horario_inicio = 1;
-  let analisisN = 1;
-  let cotizacion = 1;
+  let cotizacion = 1; //Modulos aun no terminados
+
   const [formCita, setFormCita] = useState({
-    id_usuario: usuario,
-    id_paciente: paciente,
-    id_horario_atencion: horario_inicio,
-    id_analisis: analisisN,
-    id_cotizacion: cotizacion,
+    id_analisis: "",
   });
 
   const [file, setFile] = useState(null);
@@ -112,49 +91,90 @@ function FormCitaUser() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //Insertar en la tabla direcciones
-    useFetchPOST(
-      "http://localhost:3000/direcciones/add/",
-      formDireccion
-    );
+    //POST en la tabla direccion
+    const response = await fetch("http://localhost:3000/direcciones/add/", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id_colonia: formDireccion.id_colonia,
+        calle: formDireccion.calle,
+        numero: formDireccion.numero,
+        codigo_postal: formDireccion.codigo_postal,
+      }),
+    });
+    const resDireccion = await response.json();
+    console.log(resDireccion);
 
-    //Insertar en la tabla horarios
-    useFetchPOST("http://localhost:3000/horarios/add/", formHorario);
+    //POST en la tabla horarios_atencion
+    const respons = await fetch("http://localhost:3000/horarios/add/", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formHorario),
+    });
+    const resHorario = await respons.json();
+    console.log(resHorario);
 
-    //Insertar en la tabla pacientes
-    useFetchPOST("http://localhost:3000/patients/add/", formPaciente);
+    //POST en la tabla pacientes
+    const respon = await fetch("http://localhost:3000/patients/add/", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nombre: formPaciente.nombre,
+        apellidoP: formPaciente.apellidoP,
+        apellidoM: formPaciente.apellidoM,
+        fecha_nacimiento: formPaciente.fecha_nacimiento,
+        id_genero: formPaciente.id_genero,
+        id_direccion: resDireccion.id_direccion,
+        telefono: formPaciente.telefono,
+      }),
+    });
+    const resPacientes = await respon.json();
+    console.log(resPacientes);
 
+    //POST en la tabla citas
     //Insertar en la tabla citas
     const formData = new FormData();
-    formData.append("id_usuario", formCita.id_usuario);
-    formData.append("id_paciente", formCita.id_paciente);
-    formData.append("id_horario_atencion", formCita.id_horario_atencion);
+    formData.append("id_usuario", usuario);
+    formData.append("id_paciente", resPacientes.id_paciente);
+    formData.append("id_horario_atencion", resHorario.id_horario);
     formData.append("id_analisis", formCita.id_analisis);
     formData.append("solicitud_estudios", file);
-    formData.append("id_cotizacion", formCita.id_cotizacion);
+    formData.append("id_cotizacion", cotizacion);
 
-    useFetchBLOB(
-      "http://localhost:3000/appointments/add/",
-      formData
-    ).then((res) => {
-      if (res.ok) {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Consulta agendada",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
-        Swal.fire({
-          position: "center",
-          icon: "error",
-          title: "Ups Ocurrió un error",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
+    const respo = await fetch("http://localhost:3000/appointments/add/", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
     });
+    const resCita = await respo.json();
+    if (respo.ok) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Consulta agendada",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Ups Ocurrió un error",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
 
   return (
