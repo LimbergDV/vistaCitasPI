@@ -1,7 +1,28 @@
 import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
-function SearchNav (){
+function SearchNav (params){
+    const token = import.meta.env.VITE_TOKEN;
+    const { id_categoria} = params;
+    
+
+    const options = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    
+    const onSearch = async (nombre) => {
+      const response = await fetch(
+        `http://localhost:3000/analysis/search/${id_categoria}/${nombre}`,
+        options
+      );
+      const data = await response.json();
+      return data;
+    };
+    
+
   const [query, setQuery] = useState('');
 
   const handleInputChange = (e) => {
@@ -11,6 +32,7 @@ function SearchNav (){
   const handleSearch = (e) => {
     e.preventDefault();
     onSearch(query);
+    console.log(onSearch(query));
   };
 
   return (

@@ -12,7 +12,7 @@ function PageQuimicaClinica(){
         <br />
         <Title title="Química Clínica"/>
         <br />
-        <SearchNav/>
+        <SearchNav id_categoria = "1"/>
         <TableEstudios1 id_categoria = "1"/>
         <br /> <br />
         <Footer/>
