@@ -1,82 +1,122 @@
-import React, { useState } from 'react';
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
+import React, { useState, useEffect } from "react";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Swal from "sweetalert2";
+
+import { fetchData } from "../../fetchData";
+
+const currentDate = new Date();
+const year = currentDate.getFullYear();
+const month = currentDate.getMonth() + 1; // Los meses empiezan desde 0
+const day = currentDate.getDate();
+const fecha_actual = `${year}-${month}-${day}`;
+
+// Métodos POST usados en la página
+const token = import.meta.env.VITE_TOKEN;
+
+const options = {
+  method: "POST",
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+};
+
+const fetchDataForDate = async () => {
+  const response = await fetch(
+    `http://localhost:3000/analysis/add/${fecha_actual}`,
+    options
+  );
+  const data = await response.json();
+  return data;
+};
 
 const columns = [
-  { id: 'nombre', label: 'Nombre', minWidth: 170 },
-  { id: 'condiciones', label: 'Condiciones del paciente', minWidth: 170 },
-  { id: 'precio', label: 'Precio', minWidth: 170 },
-  { id: 'actions', label: 'Acciones', minWidth: 100 },
+  { id: "nombre", label: "Nombre", minWidth: 170 },
+  { id: "clave", label: "Clave de estudios", minWidth: 170 },
+  { id: "descripcion", label: "Descripción", minWidth: 170 },
+  { id: "precio", label: "Precio", minWidth: 170 },
+  { id: "actions", label: "Acciones", minWidth: 100 },
 ];
 
-const initialRows = [
-  { id: 1, nombre: '17 ALFA HIDROXIPROGESTERONA', condiciones: 'AYUNO DE 8 HORAS', precio: '$459' },
-  { id: 2, nombre: '17 ALFA HIDROXIPROGESTERONA  (NEONATAL)', condiciones: 'TOMAR DESPUES DE LA SEGUNDA TOMA DE LECHE A LAS 48 HRS DE NACIMIENTO', precio: '$432' },
-  { id: 3, nombre: '17 CETOSTEROIDES', condiciones: 'TOMAR DESPUES DE LA SEGUNDA TOMA DE LECHE A LAS 48 HRS DE NACIMIENTO', precio: '$840' },
-  { id: 4, nombre: '17 HIDROXICORTICOESTEROIDES', condiciones: 'SIN INDICACIONES ESPECIALES', precio: '$872' },
-  { id: 5, nombre: 'ACETAMINOFEN', condiciones: 'AYUNO DE 8 HORAS', precio: '$915' },
-  { id: 6, nombre: 'ACIDO DELTA AMINOLEVULINICO', condiciones: 'SIN INDICACIONES ESPECIALES', precio: '$1,083' },
-  { id: 7, nombre: 'ACIDO FOLICO', condiciones: 'AYUNO DE 8 HORAS', precio: '$441' },
-  { id: 8, nombre: 'ACIDO LACTICO', condiciones: 'AYUNO DE 8 HORAS', precio: '$328' },
-  { id: 9, nombre: 'ACIDO URICO SERICO', condiciones: 'AYUNO DE 8 HORAS', precio: '$62' },
-  { id: 10, nombre: 'ACIDO URICO URINARIO', condiciones: 'SIN INDICACIONES ESPECIALES', precio: '$125' },
-  { id: 11, nombre: 'ACIDO VANILMANDELICO', condiciones: 'NO CONSUMIR CHOCOLATE Y PRODUCTOS CON VAINILLA MINIMO 3 DIAS', precio: '$973' },
-  { id: 12, nombre: 'ACIDO VALPROICO', condiciones: 'AYUNO DE 8 HORAS Y ANTES DE LA SIGUIENTE DOSIS', precio: '$484' },
-  { id: 13, nombre: 'ACIOS GRASOS LIBRES', condiciones: 'AYUNO DE 12 HRS.', precio: '$988' },
-  { id: 14, nombre: 'ACTIVIDAD TRIPTICA EN HECES', condiciones: 'SIN INDICACIONES ESPECIALES', precio: '$316' },
-  { id: 15, nombre: 'ADENOSIN DEAMINASA', condiciones: 'SIN INDICACIONES ESPECIALES', precio: '$1,113' },
-  { id: 16, nombre: 'ADENOVIRUS (BUSQUEDA DE ANTIGENO)', condiciones: 'SIN INDICACIONES ESPECIALES', precio: '$439' },
-  { id: 17, nombre: 'ALANINA AMINO TRANSFERASA (ALAT)(TGP) ', condiciones: 'AYUNO DE 8 HORAS', precio: '$175' },
-  { id: 18, nombre: 'ALBUMINA SERICA', condiciones: 'AYUNO DE 8 HORAS', precio: '$85' },
-  { id: 19, nombre: 'ALCOHOL ETILICO EN ORINA', condiciones: 'ORINA ESPONTANEA', precio: '$495' },
-  { id: 20, nombre: 'ALCOHOL ETILICO EN SANGRE', condiciones: 'AYUNO 8 HORAS', precio: '$495' },
+const deleteCita = async (id_cita) => {
+  const options = {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const res = await fetchData(
+    `http://localhost:3000/appointments/delete/${id_cita}`,
+    options
+  );
+  return res;
+};
 
+const fecha = (dateString) => {
+  // Parsear la fecha
+  const date = new Date(dateString);
 
-];
+  // Extraer componentes de la fecha
+  const day = String(date.getUTCDate()).padStart(2, '0');
+  const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Los meses son de 0 a 11
+  const year = date.getUTCFullYear();
+
+  // Formatear la fecha
+  return `${day} / ${month} / ${year}`;
+}
 
 export default function TableEstudios1() {
-  const [rows, setRows] = useState(initialRows);
+  const [rows, setRows] = useState([]);
+  const [selectedUserId, setSelectedUserId] = useState(null);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [addModalOpen, setAddModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [selectedRow, setSelectedRow] = useState(null);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
 
-  const handleAdd = () => {
-    setSnackbarMessage('Estudio agregado');
-    setSnackbarOpen(true);
-    setAddModalOpen(false);
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const data = await fetchDataForDate();
+        console.log("Fetched data:", data); // Log the fetched data for debugging
+        if (Array.isArray(data)) {
+          setRows(data);
+        } else {
+          console.error("Data fetched is not an array:", data);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    getData();
+  }, []);
+
+  const handleDelete = async () => {
+    if (selectedUserId) {
+      await deleteCita(selectedUserId);
+      setRows((prevRows) => prevRows.filter((row) => row.id_cita !== selectedUserId));
+      setDeleteModalOpen(false);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Cita cancelada",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
   };
 
-  const handleDelete = () => {
-    const updatedRows = rows.filter(row => row.id !== selectedRow.id);
-    setRows(updatedRows);
-    setSnackbarMessage('Estudio eliminado');
-    setSnackbarOpen(true);
-    setDeleteModalOpen(false);
-  };
-
-  const handleOpenAddModal = (row) => {
-    setSelectedRow(row);
-    setAddModalOpen(true);
-  };
-
-  const handleOpenDeleteModal = (row) => {
-    setSelectedRow(row);
+  //modificar boton de agregar cotización 
+  const handleOpenAddModal = (id_cita) => {
+    setSelectedUserId(id_cita);
     setDeleteModalOpen(true);
   };
 
@@ -89,12 +129,8 @@ export default function TableEstudios1() {
     setPage(0);
   };
 
-  const handleSnackbarClose = () => {
-    setSnackbarOpen(false);
-  };
-
   return (
-    <Paper sx={{ width: "100%", height: "100vh",overflow: "hidden" }}>
+    <Paper sx={{ width: "100%", height: "100vh", overflow: "hidden" }}>
       <TableContainer sx={{ width: "100%", height: "100vh" }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -111,39 +147,34 @@ export default function TableEstudios1() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                    <TableCell>{row.nombre}</TableCell>
-                    <TableCell>{row.condiciones}</TableCell>
-                    <TableCell>{row.precio}</TableCell>
-                    <TableCell>
-                      <Button onClick={() => handleOpenAddModal(row)}>Agregar</Button>
-                      <Button onClick={() => handleOpenDeleteModal(row)}>Eliminar</Button>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((cita) => {
+              return (
+                
+                <TableRow hover role="checkbox" tabIndex={-1} key={cita.id_cita}>
+                  <TableCell>{`${cita.nombre} ${cita.apellidoP} ${cita.apellidoM}`}</TableCell>
+                  <TableCell>{cita.telefono}</TableCell>
+                  <TableCell>{fecha(cita.fecha)}</TableCell>
+                  <TableCell>{cita.horario_inicio}</TableCell>
+                  <TableCell>
+                    <Button onClick={() => handleOpenDeleteModal(cita.id_cita)}>
+                      Agregar
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>
-
-      {/* Add Confirmation Modal */}
-      <Modal
-        open={addModalOpen}
-        onClose={() => setAddModalOpen(false)}
-        aria-labelledby="add-modal-title"
-        aria-describedby="add-modal-description"
-      >
-        <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 400, bgcolor: 'background.paper', boxShadow: 24, p: 4 }}>
-          <h2 id="add-modal-title">Confirmación de Agregar</h2>
-          <p id="add-modal-description">¿Seguro que quieres agregar este estudio?</p>
-          <Button onClick={handleAdd} variant="contained" color="primary">Sí</Button>
-          <Button onClick={() => setAddModalOpen(false)} variant="contained">No</Button>
-        </Box>
-      </Modal>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
 
       {/* Delete Confirmation Modal */}
       <Modal
@@ -152,24 +183,30 @@ export default function TableEstudios1() {
         aria-labelledby="delete-modal-title"
         aria-describedby="delete-modal-description"
       >
-        <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 400, bgcolor: 'background.paper', boxShadow: 24, p: 4 }}>
-          <h2 id="delete-modal-title">Confirmación de Eliminación</h2>
-          <p id="delete-modal-description">¿Estás seguro que deseas eliminar este estudio?</p>
-          <Button onClick={handleDelete} variant="contained" color="error">Eliminar</Button>
-          <Button onClick={() => setDeleteModalOpen(false)} variant="contained">Cancelar</Button>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 600,
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <h2 id="delete-modal-title">Confirmación de Cancelación</h2>
+          <p id="delete-modal-description">
+            ¿Estás seguro que deseas quitar el estudio?
+          </p>
+          <Button onClick={handleDelete} variant="contained" color="error">
+            Sí
+          </Button>
+          <Button onClick={() => setDeleteModalOpen(false)} variant="contained">
+            No
+          </Button>
         </Box>
       </Modal>
-
-      {/* Snackbar */}
-      <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={6000}
-        onClose={handleSnackbarClose}
-      >
-        <Alert onClose={handleSnackbarClose} severity="success" sx={{ width: '100%' }}>
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
     </Paper>
   );
 }
