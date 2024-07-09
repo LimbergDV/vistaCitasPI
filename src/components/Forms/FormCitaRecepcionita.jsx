@@ -1,5 +1,4 @@
 import React from "react";
-
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import "../styles/formCitaRecepcionista.css";
@@ -33,7 +32,7 @@ const analisis = fetchData(
 );
 
 
-function FormCitaRecepcionista() {
+export function FormCitaRecepcionista() {
   //Logica de navegacion
   const navigate = useNavigate();
 

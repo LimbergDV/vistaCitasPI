@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -10,20 +10,17 @@ import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import Swal from "sweetalert2";
 
 import { fetchData } from "../../fetchData";
-import { Suspense } from "react";
 
 const currentDate = new Date();
-
-// Obtener componentes específicos
 const year = currentDate.getFullYear();
 const month = currentDate.getMonth() + 1; // Los meses empiezan desde 0
 const day = currentDate.getDate();
 const fecha_actual = `${year}-${month}-${day}`;
 
-//Métodos GET usados en la página
+// Métodos GET usados en la página
 const token = import.meta.env.VITE_TOKEN;
 
 const options = {
@@ -33,10 +30,14 @@ const options = {
   },
 };
 
-const data = fetchData(
-  `http://localhost:3000/appointments/getAll/${fecha_actual}`,
-  options
-);
+const fetchDataForDate = async () => {
+  const response = await fetch(
+    `http://localhost:3000/appointments/getAll/${fecha_actual}`,
+    options
+  );
+  const data = await response.json();
+  return data;
+};
 
 const columns = [
   { id: "nombre", label: "Paciente", minWidth: 170 },
@@ -46,61 +47,75 @@ const columns = [
   { id: "actions", label: "Acciones", minWidth: 100 },
 ];
 
-const initialRows = [];
-
-const deleteCita = (id_cita) => {
+const deleteCita = async (id_cita) => {
   const options = {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
-  const res = fetchData(
+  const res = await fetchData(
     `http://localhost:3000/appointments/delete/${id_cita}`,
     options
   );
+  return res;
 };
 
+const fecha = (dateString) => {
+  // Parsear la fecha
+  const date = new Date(dateString);
+
+  // Extraer componentes de la fecha
+  const day = String(date.getUTCDate()).padStart(2, '0');
+  const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Los meses son de 0 a 11
+  const year = date.getUTCFullYear();
+
+  // Formatear la fecha
+  return `${day} / ${month} / ${year}`;
+}
+
 export default function StickyHeadTable() {
-  console.log(data.read());
-
-  data.read().map((cita) => {
-    initialRows.push({
-      id: cita.id_cita,
-      paciente: `${cita.nombre} ${cita.apellidoP} ${cita.apellidoM}`,
-      telefono: `${cita.telefono}`,
-      fecha: `${cita.fecha}`,
-      hora: `${cita.horario_inicio}`,
-    });
-  });
-
-  const [rows, setRows] = useState(initialRows);
+  const [rows, setRows] = useState([]);
+  const [selectedUserId, setSelectedUserId] = useState(null);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [editModalOpen, setEditModalOpen] = useState(false);
-  const [selectedRow, setSelectedRow] = useState(null);
 
-  
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const data = await fetchDataForDate();
+        console.log("Fetched data:", data); // Log the fetched data for debugging
+        if (Array.isArray(data)) {
+          setRows(data);
+        } else {
+          console.error("Data fetched is not an array:", data);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-  const handleDelete = () => {
-    let row_id;
-    const updatedRows = rows.filter((row) => {
-      row.id !== selectedRow.id;
-      row_id = row.id;
-    });
-    setDeleteModalOpen(false);
-    setRows(updatedRows);
-    deleteCita(row_id);
+    getData();
+  }, []);
+
+  const handleDelete = async () => {
+    if (selectedUserId) {
+      await deleteCita(selectedUserId);
+      setRows((prevRows) => prevRows.filter((row) => row.id_cita !== selectedUserId));
+      setDeleteModalOpen(false);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Cita cancelada",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
   };
 
-  const handleEdit = () => {
-    // Implement logic to update the row in the state or backend
-    setEditModalOpen(false);
-  };
-
-  const handleOpenDeleteModal = (row) => {
-    setSelectedRow(row);
+  const handleOpenDeleteModal = (id_cita) => {
+    setSelectedUserId(id_cita);
     setDeleteModalOpen(true);
   };
 
@@ -131,26 +146,34 @@ export default function StickyHeadTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                    <TableCell>{row.paciente}</TableCell>
-                    <TableCell>{row.telefono}</TableCell>
-                    <TableCell>{row.fecha}</TableCell>
-                    <TableCell>{row.hora}</TableCell>
-                    <TableCell>
-                      <Button onClick={() => handleOpenDeleteModal(row)}>
-                        Eliminar
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((cita) => {
+              return (
+                
+                <TableRow hover role="checkbox" tabIndex={-1} key={cita.id_cita}>
+                  <TableCell>{`${cita.nombre} ${cita.apellidoP} ${cita.apellidoM}`}</TableCell>
+                  <TableCell>{cita.telefono}</TableCell>
+                  <TableCell>{fecha(cita.fecha)}</TableCell>
+                  <TableCell>{cita.horario_inicio}</TableCell>
+                  <TableCell>
+                    <Button onClick={() => handleOpenDeleteModal(cita.id_cita)}>
+                      Cancelar
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
 
       {/* Delete Confirmation Modal */}
       <Modal
@@ -165,71 +188,21 @@ export default function StickyHeadTable() {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: 400,
+            width: 600,
             bgcolor: "background.paper",
             boxShadow: 24,
             p: 4,
           }}
         >
-          <h2 id="delete-modal-title">Confirmación de Eliminación</h2>
+          <h2 id="delete-modal-title">Confirmación de Cancelación</h2>
           <p id="delete-modal-description">
-            ¿Estás seguro que deseas eliminar este registro?
+            ¿Estás seguro que deseas cancelar la cita?
           </p>
           <Button onClick={handleDelete} variant="contained" color="error">
-            Eliminar
+            Sí
           </Button>
           <Button onClick={() => setDeleteModalOpen(false)} variant="contained">
-            Cancelar
-          </Button>
-        </Box>
-      </Modal>
-
-      {/* Edit Modal */}
-      <Modal
-        open={editModalOpen}
-        onClose={() => setEditModalOpen(false)}
-        aria-labelledby="edit-modal-title"
-        aria-describedby="edit-modal-description"
-      >
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 400,
-            bgcolor: "background.paper",
-            boxShadow: 24,
-            p: 4,
-          }}
-        >
-          <h2 id="edit-modal-title">Editar Registro</h2>
-          <TextField
-            id="edit-name"
-            label="Nombre"
-            defaultValue={selectedRow ? selectedRow.name : ""}
-            fullWidth
-            sx={{ mb: 2 }}
-          />
-          <TextField
-            id="edit-email"
-            label="Correo Electrónico"
-            defaultValue={selectedRow ? selectedRow.email : ""}
-            fullWidth
-            sx={{ mb: 2 }}
-          />
-          <TextField
-            id="edit-registration-date"
-            label="Fecha de Registro"
-            defaultValue={selectedRow ? selectedRow.registrationDate : ""}
-            fullWidth
-            sx={{ mb: 2 }}
-          />
-          <Button onClick={handleEdit} variant="contained">
-            Guardar Cambios
-          </Button>
-          <Button onClick={() => setEditModalOpen(false)} variant="contained">
-            Cancelar
+            No
           </Button>
         </Box>
       </Modal>
