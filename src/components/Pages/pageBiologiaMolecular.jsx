@@ -11,7 +11,7 @@ function PageBiologiaMolecular(){
         <br />
         <Title title="Biología Molecular"/>
         <br />
-        <TableEstudios1/>
+        <TableEstudios1 id_categoria = "2"/>
         <br /> <br />
         <Footer/>
         </>

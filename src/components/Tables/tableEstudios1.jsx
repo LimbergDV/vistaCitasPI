@@ -14,30 +14,9 @@ import Swal from "sweetalert2";
 
 import { fetchData } from "../../fetchData";
 
-const currentDate = new Date();
-const year = currentDate.getFullYear();
-const month = currentDate.getMonth() + 1; // Los meses empiezan desde 0
-const day = currentDate.getDate();
-const fecha_actual = `${year}-${month}-${day}`;
 
 // Métodos POST usados en la página
 const token = import.meta.env.VITE_TOKEN;
-
-const options = {
-  method: "POST",
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-};
-
-const fetchDataForDate = async () => {
-  const response = await fetch(
-    `http://localhost:3000/analysis/add/${fecha_actual}`,
-    options
-  );
-  const data = await response.json();
-  return data;
-};
 
 const columns = [
   { id: "nombre", label: "Nombre", minWidth: 170 },
@@ -47,7 +26,7 @@ const columns = [
   { id: "actions", label: "Acciones", minWidth: 100 },
 ];
 
-const deleteCita = async (id_cita) => {
+/*const deleteCita = async (id_cita) => {
   const options = {
     method: "DELETE",
     headers: {
@@ -55,26 +34,32 @@ const deleteCita = async (id_cita) => {
     },
   };
   const res = await fetchData(
-    `http://localhost:3000/appointments/delete/${id_cita}`,
+    `http://localhost:3000/anylisis/add/${id_cita}`,
     options
   );
   return res;
-};
+};*/
 
-const fecha = (dateString) => {
-  // Parsear la fecha
-  const date = new Date(dateString);
 
-  // Extraer componentes de la fecha
-  const day = String(date.getUTCDate()).padStart(2, '0');
-  const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Los meses son de 0 a 11
-  const year = date.getUTCFullYear();
+export default function TableEstudios1(params) {
+  const { id_categoria } = params;
 
-  // Formatear la fecha
-  return `${day} / ${month} / ${year}`;
-}
-
-export default function TableEstudios1() {
+  const options = {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  
+  const fetchDataForDate = async () => {
+    const response = await fetch(
+      `http://localhost:3000/analysis/allCategory/${parseInt(id_categoria)}`,
+      options
+    );
+    const data = await response.json();
+    return data;
+  };
+  
   const [rows, setRows] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [page, setPage] = useState(0);
@@ -99,7 +84,7 @@ export default function TableEstudios1() {
     getData();
   }, []);
 
-  const handleDelete = async () => {
+  /*const handleDelete = async () => {
     if (selectedUserId) {
       await deleteCita(selectedUserId);
       setRows((prevRows) => prevRows.filter((row) => row.id_cita !== selectedUserId));
@@ -112,7 +97,7 @@ export default function TableEstudios1() {
         timer: 1500
       });
     }
-  };
+  };*/
 
   //modificar boton de agregar cotización 
   const handleOpenAddModal = (id_cita) => {
@@ -147,16 +132,16 @@ export default function TableEstudios1() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((cita) => {
+            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((analisis) => {
               return (
                 
-                <TableRow hover role="checkbox" tabIndex={-1} key={cita.id_cita}>
-                  <TableCell>{`${cita.nombre} ${cita.apellidoP} ${cita.apellidoM}`}</TableCell>
-                  <TableCell>{cita.telefono}</TableCell>
-                  <TableCell>{fecha(cita.fecha)}</TableCell>
-                  <TableCell>{cita.horario_inicio}</TableCell>
+                <TableRow hover role="checkbox" tabIndex={-1} key={analisis.id_analisis}>
+                  <TableCell>{analisis.nombre}</TableCell>
+                  <TableCell>{analisis.clave_estudios}</TableCell>
+                  <TableCell>{analisis.descripcion}</TableCell>
+                  <TableCell>${analisis.precio}</TableCell>
                   <TableCell>
-                    <Button onClick={() => handleOpenDeleteModal(cita.id_cita)}>
+                    <Button> {/*onClick={() => handleOpenAModal(analisis.id_analisis)}*/}
                       Agregar
                     </Button>
                   </TableCell>
@@ -199,7 +184,7 @@ export default function TableEstudios1() {
           <p id="delete-modal-description">
             ¿Estás seguro que deseas quitar el estudio?
           </p>
-          <Button onClick={handleDelete} variant="contained" color="error">
+          <Button > {/*onClick={handleDelete} variant="contained" color="error"*/}
             Sí
           </Button>
           <Button onClick={() => setDeleteModalOpen(false)} variant="contained">

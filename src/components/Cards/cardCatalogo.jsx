@@ -44,7 +44,7 @@ function CardCatalogo(){
             <div className="card">
             <img src={img3}/>
             <div className="card-content">
-                <h3>Alergenos</h3>
+                <h3>Alérgenos</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ut nulla vel sit reprehenderit, unde molestiae vero magni veritatis architecto minus mollitia distinctio iste dignissimos voluptatem, neque pariatur cum! Expedita!</p>
                 <a href="" className="btn" onClick={handleButtonClick3}>Ver Estudios</a>
             </div>
