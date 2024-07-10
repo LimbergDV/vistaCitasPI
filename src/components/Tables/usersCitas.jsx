@@ -107,7 +107,7 @@ export default function StickyHeadTable() {
   const [rows, setRows] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState();
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   useEffect(() => {
@@ -117,6 +117,7 @@ export default function StickyHeadTable() {
         console.log("Fetched data:", data); // Log the fetched data for debugging
         if (Array.isArray(data)) {
           setRows(data);
+          setRowsPerPage(data.length);
         } else {
           console.error("Data fetched is not an array:", data);
         }
