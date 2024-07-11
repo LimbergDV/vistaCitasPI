@@ -1,0 +1,114 @@
+.principalContent {
+  padding: 20px;
+}
+
+.mainTitle {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: left;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.contentContainer {
+  display: flex;
+  flex-wrap: wrap; /* Permitir que los elementos se envuelvan en pantallas pequeñas */
+  gap: 20px; /* Espacio entre elementos */
+}
+
+.leftContainer {
+  width: 60%;
+  margin-top: 20px;
+}
+
+.searchSection {
+  display: flex;
+  flex-direction: column; /* Alinear elementos verticalmente */
+  gap: 10px; /* Espacio entre elementos */
+}
+
+.searchTitleContainer {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espacio entre elementos */
+  margin-bottom: 10px;
+}
+
+.searchTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+}
+
+.searchPacienteSection {
+  margin-top: 30px;
+}
+
+.fileUploadSection {
+  margin-top: 20px;
+}
+
+.uploadTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.uploadContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  border: 2px dashed #cccccc;
+  border-radius: 10px;
+  width: 100%; /* Ancho completo para ocupar el contenedor */
+  box-sizing: border-box; /* Incluir el padding y el borde en el ancho total */
+}
+
+.uploadIcon {
+  font-size: 40px;
+}
+
+.documentViewSection {
+  width: 35%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.documentViewTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.documentView {
+  width: 100%;
+  height: 300px;
+  background-color: #cccccc;
+  border-radius: 10px;
+}
+
+.btnUpload{
+  width: 30%;
+  min-width: 150px;
+  margin-top: 3%;
+  margin-left: 15%;
+  margin-right: auto;
+
+}
+
+@media (max-width: 768px) {
+  .contentContainer {
+    flex-direction: column;
+  }
+
+  .leftContainer {
+    width: 100%; 
+  }
+
+  .documentViewSection {
+    width: 100%; 
+  }
+}

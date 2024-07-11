@@ -14,6 +14,7 @@ import PageAlergenos from './components/Pages/pageAlergenos.jsx'
 import PageMicrobiologiaMedica from './components/Pages/pageMicrobiologiaMedica.jsx'
 import PageMicrobiologiaSanitaria from './components/Pages/pageMicrobiologiaSanitaria.jsx'
 import PageCitologia from './components/Pages/pageCitologia.jsx'
+import PageCargarResultados from './components/Pages/pageCargarResultados.jsx'
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
   {
     path: '/citologia&histopatologia',
     element: <PageCitologia/>
+  },
+  {
+    path: '/cargarResultados',
+    element: <PageCargarResultados/>
   },
 
 
