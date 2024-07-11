@@ -3,6 +3,7 @@ import { FaSearch } from 'react-icons/fa';
 
 function SearchNav (params){
     const token = import.meta.env.VITE_TOKEN;
+    const url = import.meta.env.VITE_URL_BASE;
     const { id_categoria} = params;
     
 
@@ -15,7 +16,7 @@ function SearchNav (params){
     
     const onSearch = async (nombre) => {
       const response = await fetch(
-        `http://localhost:3000/analysis/search/${id_categoria}/${nombre}`,
+        `${url}/analysis/search/${id_categoria}/${nombre}`,
         options
       );
       const data = await response.json();

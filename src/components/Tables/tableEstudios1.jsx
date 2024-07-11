@@ -17,6 +17,7 @@ import { fetchData } from "../../fetchData";
 
 // Métodos POST usados en la página
 const token = import.meta.env.VITE_TOKEN;
+const url = import.meta.env.VITE_URL_BASE;
 
 const columns = [
   { id: "nombre", label: "Nombre", minWidth: 170 },
@@ -53,7 +54,7 @@ export default function TableEstudios1(params) {
   
   const fetchDataForDate = async () => {
     const response = await fetch(
-      `http://localhost:3000/analysis/allCategory/${parseInt(id_categoria)}`,
+      `${url}/analysis/allCategory/${parseInt(id_categoria)}`,
       options
     );
     const data = await response.json();

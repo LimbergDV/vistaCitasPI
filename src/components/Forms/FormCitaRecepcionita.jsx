@@ -8,15 +8,17 @@ import { fetchData } from "../../fetchData";
 
 // Métodos GET usados en la página
 const token = import.meta.env.VITE_TOKEN;
+const url = import.meta.env.VITE_URL_BASE;
 const options = {
   method: "GET",
   headers: {
     Authorization: `Bearer ${token}`,
   },
 };
-const generos = fetchData("http://localhost:3000/genders/getAll/", options);
-const colonias = fetchData("http://localhost:3000/colonies/getAll/", options);
-const analisis = fetchData("http://localhost:3000/analysis/getAll/", options);
+const generos = fetchData(`${url}/genders/getAll/`, options);
+const colonias = fetchData(`${url}/colonies/getAll/`, options);
+const analisis = fetchData(`${url}/analysis/getAll/`, options);
+const horarios = fetchData(`${url}/horarios/getAll/`, options);
 
 function FormCitaRecepcionita() {
   //Logica de navegacion
@@ -44,12 +46,12 @@ function FormCitaRecepcionita() {
   });
 
   const [formHorario, setFormHorario] = useState({
-    fecha: "",
     horario_inicio: "",
   });
 
   const [formCita, setFormCita] = useState({
     id_analisis: "",
+    fecha: "",
   });
 
   const [file, setFile] = useState(null);
@@ -75,9 +77,9 @@ function FormCitaRecepcionita() {
       ["calle", "numero", "codigo_postal", "id_colonia"].includes(name)
     ) {
       setFormDireccion((prevState) => ({ ...prevState, [name]: value }));
-    } else if (["fecha", "horario_inicio"].includes(name)) {
+    } else if (["horario_inicio"].includes(name)) {
       setFormHorario((prevState) => ({ ...prevState, [name]: value }));
-    } else if (["solicitud_estudios", "id_analisis"].includes(name)) {
+    } else if (["solicitud_estudios", "id_analisis", "fecha"].includes(name)) {
       setFormCita((prevState) => ({ ...prevState, [name]: value }));
     }
   };
@@ -85,83 +87,93 @@ function FormCitaRecepcionita() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // POST en la tabla direccion
-    console.log(formDireccion);
-    formDireccion.id_colonia =
-      formDireccion.id_colonia === "" ? 1 : formDireccion.id_colonia;
-    const response = await fetch("http://localhost:3000/direcciones/add/", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formDireccion),
-    });
-    const resDireccion = await response.json();
-    console.log(resDireccion);
+    //Validar con la existencia de una cita...
+    if (formHorario.horario_inicio === "") {
+      formHorario.horario_inicio = 1;
+    }
+    const res = await fetch(
+      `${url}/appointments/exist/${formCita.fecha}/${formHorario.horario_inicio}`,
+      options
+    );
+    const data = await res.json();
 
-    // POST en la tabla horarios_atencion
-    const respons = await fetch("http://localhost:3000/horarios/add/", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formHorario),
-    });
-    const resHorario = await respons.json();
-    console.log(resHorario);
-
-    // POST en la tabla pacientes
-    formPaciente.id_genero =
-      formPaciente.id_genero === "" ? 1 : formPaciente.id_genero;
-    const respon = await fetch("http://localhost:3000/patients/add/", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...formPaciente,
-        id_direccion: resDireccion.id_direccion,
-      }),
-    });
-    const resPacientes = await respon.json();
-    console.log(resPacientes);
-
-    // POST en la tabla citas
-    formCita.id_analisis =
-      formCita.id_analisis === "" ? 1 : formCita.id_analisis;
-    const formData = new FormData();
-    formData.append("id_usuario", 2);
-    formData.append("id_paciente", resPacientes.id_paciente);
-    formData.append("id_horario_atencion", resHorario.id_horario);
-    formData.append("id_analisis", formCita.id_analisis);
-    formData.append("solicitud_estudios", file);
-    formData.append("id_cotizacion", 1);
-
-    const respo = await fetch("http://localhost:3000/appointments/add/", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: formData,
-    });
-    if (respo.ok) {
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Consulta agendada",
-        showConfirmButton: false,
-        timer: 1500,
+    if (data.length == 0) {
+      // POST en la tabla direccion
+      console.log(formDireccion);
+      if (formDireccion.id_colonia === "") {
+        formDireccion.id_colonia = 1;
+      }
+      const response = await fetch(`${url}/direcciones/add/`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formDireccion),
       });
+      const resDireccion = await response.json();
+      console.log(resDireccion);
+
+      // POST en la tabla pacientes
+      if (formPaciente.id_genero === "") {
+        formPaciente.id_genero = 1;
+      }
+      const respon = await fetch(`${url}/patients/add/`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formPaciente,
+          id_direccion: resDireccion.id_direccion,
+        }),
+      });
+      const resPacientes = await respon.json();
+      console.log(resPacientes);
+
+      // POST en la tabla citas
+      if (formCita.id_analisis === "") {
+        formCita.id_analisis = 1;
+      }
+      const formData = new FormData();
+      formData.append("id_usuario", 1);
+      formData.append("id_paciente", resPacientes.id_paciente);
+      formData.append("id_horario_atencion", formHorario.horario_inicio);
+      formData.append("id_analisis", formCita.id_analisis);
+      formData.append("solicitud_estudios", file);
+      formData.append("id_cotizacion", 1);
+      formData.append("fecha", formCita.fecha);
+
+      const respo = await fetch(`${url}/appointments/add/`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+      if (respo.ok) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Consulta agendada",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Oops, Ocurrió un error",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     } else {
       Swal.fire({
-        position: "center",
         icon: "error",
-        title: "Ups Ocurrió un error",
-        showConfirmButton: false,
-        timer: 1500,
+        title: "Oops, Ya existe una cita",
+        text: "Elige otra fecha u hora en la que le podamos atender",
       });
     }
   };
@@ -169,13 +181,14 @@ function FormCitaRecepcionita() {
   return (
     <div className="principalContent">
       <div className="formLogin">
-        <div className="btnCita">
-          <button className="btn1" onClick={handleButtonClick}>
-            Ver Citas Agendadas 📅
-          </button>
-        </div>
         <h1 className="textPrincipal">Programa una cita</h1>
         <form onSubmit={handleSubmit}>
+          <div className="btnCita">
+            <button className="btn1" onClick={handleButtonClick}>
+              Ver Citas Agendadas 📅
+            </button>
+          </div>
+
           <h3 className="secondText">
             <FaCircleInfo className="infoIcon" />
             Sobre el paciente
@@ -341,20 +354,25 @@ function FormCitaRecepcionita() {
                 id="date2"
                 type="date"
                 required
-                value={formHorario.fecha}
+                value={formCita.fecha}
                 onChange={handleChange}
               />
               <label htmlFor="horario_inicio" className="birthDate">
                 Hora:
               </label>
-              <input
+              <select
                 name="horario_inicio"
                 id="date3"
-                type="time"
-                required
+                className="select"
                 value={formHorario.horario_inicio}
                 onChange={handleChange}
-              />
+              >
+                {horarios.read().map((horario) => (
+                  <option value={horario.id_horario} key={horario.id_horario}>
+                    {horario.horario_inicio}
+                  </option>
+                ))}
+              </select>
               <br />
               <button className="btn" type="submit">
                 Agendar

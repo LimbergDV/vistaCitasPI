@@ -22,6 +22,7 @@ const fecha_actual = `${year}-${month}-${day}`;
 
 // Métodos GET usados en la página
 const token = import.meta.env.VITE_TOKEN;
+const url = import.meta.env.VITE_URL_BASE;
 
 const options = {
   method: "GET",
@@ -32,7 +33,7 @@ const options = {
 
 const fetchDataForDate = async () => {
   const response = await fetch(
-    `http://localhost:3000/appointments/getAll/${fecha_actual}`,
+    `${url}/appointments/getAll/${fecha_actual}`,
     options
   );
   const data = await response.json();
@@ -56,7 +57,7 @@ const deleteCita = async (id_cita) => {
     },
   };
   const res = await fetchData(
-    `http://localhost:3000/appointments/delete/${id_cita}`,
+    `${url}/appointments/delete/${id_cita}`,
     options
   );
   return res;
@@ -77,7 +78,7 @@ const fecha = (dateString) => {
 
 const descargar = async (id_cita) => {
   try {
-    const response = await fetch(`http://localhost:3000/appointments/getSolicitud/${id_cita}`, {
+    const response = await fetch(`${url}/appointments/getSolicitud/${id_cita}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`, // Si necesitas autenticación
