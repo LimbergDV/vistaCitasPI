@@ -18,8 +18,12 @@
     "@material-tailwind/react": "^2.1.9",
     "@mui/icons-material": "^5.15.21",
     "@mui/material": "^5.15.21",
+<<<<<<< HEAD
     "@react-pdf-viewer/core": "^3.12.0",
     "@react-pdf-viewer/default-layout": "^3.12.0",
+=======
+    "@mui/system": "^5.16.1",
+>>>>>>> d5d05af1033d4b3f5dededb1ac9d558b071352bb
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "pdfjs-dist": "^3.4.120",

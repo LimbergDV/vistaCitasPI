@@ -1,0 +1,67 @@
+.historial-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .search-section {
+    margin-bottom: 20px;
+  }
+  
+  .search-section h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  
+  .search-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+  }
+  
+  .input-group {
+    flex: 1 1 300px; 
+    max-width: 300px; 
+  }
+  
+  .input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 150px;
+  }
+  
+  .input-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 30vh;
+    background-color: #d9d9d9;
+  }
+  
+  .input-group input::placeholder {
+    color: #4c4848;
+  }
+  
+  .search-button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    width: 50px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 45px;
+    margin-top: 24px;
+  }
+  
+  .search-button i {
+    font-size: 1.2em;
+  }
+
+  input[type="date"]::-webkit-datetime-edit {
+    color: rgb(105, 104, 104); 
+  }
+  
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(50%); 
+  }
