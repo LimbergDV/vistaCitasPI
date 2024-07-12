@@ -13,11 +13,11 @@
 .contentContainer {
   display: flex;
   flex-wrap: wrap; /* Permitir que los elementos se envuelvan en pantallas pequeñas */
-  gap: 20px; /* Espacio entre elementos */
+  gap: 5%; /* Espacio entre elementos */
 }
 
 .leftContainer {
-  width: 60%;
+  width: 40%;
   margin-top: 20px;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .documentViewSection {
-  width: 35%;
+  width: 50%;
   margin-top: 20px;
   text-align: center;
 }
@@ -85,9 +85,13 @@
 
 .documentView {
   width: 100%;
-  height: 300px;
-  background-color: #cccccc;
+  height: 450px;
+  background-color: #ebeaea;
   border-radius: 10px;
+  border: 1px #cccccc solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btnUpload{

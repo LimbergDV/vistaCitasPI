@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import "../styles/searchNavResultados.css"
 
-function SearchNavResultados (params){
+function SearchNavResultados ({onSearchData, resource}){
     const token = import.meta.env.VITE_TOKEN;
-    const { id_categoria} = params;
+    const url = import.meta.env.VITE_URL_BASE;
     
-
     const options = {
       method: "GET",
       headers: {
@@ -16,11 +15,13 @@ function SearchNavResultados (params){
     
     const onSearch = async (nombre) => {
       const response = await fetch(
-        `http://localhost:3000/analysis/search/${id_categoria}/${nombre}`,
+        `${url}/${resource}/search/${nombre}/`,
         options
       );
       const data = await response.json();
-      return data;
+      
+      console.log(data);
+      onSearchData(data);
     };
     
 
