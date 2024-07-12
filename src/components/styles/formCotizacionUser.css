@@ -1,0 +1,74 @@
+.form-cotizacion-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.form-cotizacion-search {
+    margin-bottom: 20px;
+}
+
+.form-cotizacion-search h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.form-cotizacion-inputs {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 75%;
+    margin-top: -10%;
+    gap: 20px;
+}
+
+.form-cotizacion-input-group {
+    flex: 1 1 100%;
+    max-width: 300px;
+}
+
+.form-cotizacion-input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 150px;
+}
+
+.form-cotizacion-input-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 20px);
+    background-color: #d9d9d9;
+}
+
+.form-cotizacion-input-group input::placeholder {
+    color: #4c4848;
+}
+
+.form-cotizacion-button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    width: 280px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 45px;
+    margin-top: 24px;
+}
+
+
+@media (max-width: 600px) {
+    .form-cotizacion-inputs {
+        flex-direction: column;
+    }
+
+    .form-cotizacion-input-group {
+        width: 100%;
+    }
+
+    .form-cotizacion-button {
+        width: 100%;
+        margin-top: 12px;
+    }
+}

@@ -16,6 +16,7 @@ import PageMicrobiologiaSanitaria from './components/Pages/pageMicrobiologiaSani
 import PageCitologia from './components/Pages/pageCitologia.jsx'
 import PageCargarResultados from './components/Pages/pageCargarResultados.jsx'
 import PageHistorialResultados from './components/Pages/pageHistorialResultados.jsx'
+import PageCotizacionUser from './components/Pages/pageCotizacionUser.jsx'
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,11 @@ const router = createBrowserRouter([
     path: '/historialResultados',
     element: <PageHistorialResultados/>
   },
+  {
+    path: '/cotizacion',
+    element: <PageCotizacionUser/>
+  },
+
 
 
 ])

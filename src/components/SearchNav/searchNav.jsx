@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import '../styles/searchNav.css'
 
 function SearchNav (params){
     const token = import.meta.env.VITE_TOKEN;
@@ -43,6 +44,7 @@ function SearchNav (params){
         value={query} 
         onChange={handleInputChange} 
         placeholder="Buscar..." 
+        className="input-placeholder"
         style={styles.input}
       />
       <button type="submit" style={styles.button}>

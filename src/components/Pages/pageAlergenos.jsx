@@ -3,6 +3,7 @@ import NavBar from "../NavBar/navBar";
 import Title from "../H'S/title";
 import TableEstudios1 from "../Tables/tableEstudios1";
 import Footer from "../Footer/footer";
+import SearchNav from "../SearchNav/searchNav";
 
 function PageAlergenos(){
     return(
