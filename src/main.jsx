@@ -17,6 +17,7 @@ import PageCitologia from './components/Pages/pageCitologia.jsx'
 import PageCargarResultados from './components/Pages/pageCargarResultados.jsx'
 import PageHistorialResultados from './components/Pages/pageHistorialResultados.jsx'
 import PageCotizacionUser from './components/Pages/pageCotizacionUser.jsx'
+import PageCotizacionRecepcionista from './components/Pages/pageCotizacionRecepcionista.jsx'
 
 const router = createBrowserRouter([
   {
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
   {
     path: '/cotizacion',
     element: <PageCotizacionUser/>
+  },
+  {
+    path: '/cotizacionRecepcionista',
+    element: <PageCotizacionRecepcionista/>
   },
 
 
