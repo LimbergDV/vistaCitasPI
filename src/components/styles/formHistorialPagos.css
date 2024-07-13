@@ -1,0 +1,23 @@
+.principal-Container{
+    padding: 20px;
+}
+
+.unique-btn {
+    display: flex;
+    justify-content: flex-end; 
+}
+
+.print-btn {
+    background-color: #000000;
+    color: #ffffff;
+    width: 120px; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 110px;
+    margin-top: -110px; 
+}
+
+.icon-print{
+    font-size: 12vh;
+}
