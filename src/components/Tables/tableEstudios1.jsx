@@ -5,14 +5,8 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import Swal from "sweetalert2";
-
-import { fetchData } from "../../fetchData";
 
 
 // Métodos POST usados en la página
@@ -27,21 +21,6 @@ const columns = [
   { id: "actions", label: "Acciones", minWidth: 100 },
 ];
 
-/*const deleteCita = async (id_cita) => {
-  const options = {
-    method: "DELETE",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-  const res = await fetchData(
-    `http://localhost:3000/anylisis/add/${id_cita}`,
-    options
-  );
-  return res;
-};*/
-
-
 export default function TableEstudios1(params) {
   const { id_categoria } = params;
 
@@ -51,7 +30,7 @@ export default function TableEstudios1(params) {
       Authorization: `Bearer ${token}`,
     },
   };
-  
+
   const fetchDataForDate = async () => {
     const response = await fetch(
       `${url}/analysis/allCategory/${parseInt(id_categoria)}`,
@@ -60,12 +39,14 @@ export default function TableEstudios1(params) {
     const data = await response.json();
     return data;
   };
-  
+
   const [rows, setRows] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState();
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [filterText, setFilterText] = useState("");
+  const [buttonState, setButton] = useState({});
 
   useEffect(() => {
     const getData = async () => {
@@ -74,6 +55,7 @@ export default function TableEstudios1(params) {
         console.log("Fetched data:", data); // Log the fetched data for debugging
         if (Array.isArray(data)) {
           setRows(data);
+          setRowsPerPage(data.length);
         } else {
           console.error("Data fetched is not an array:", data);
         }
@@ -85,22 +67,64 @@ export default function TableEstudios1(params) {
     getData();
   }, []);
 
-  /*const handleDelete = async () => {
-    if (selectedUserId) {
-      await deleteCita(selectedUserId);
-      setRows((prevRows) => prevRows.filter((row) => row.id_cita !== selectedUserId));
-      setDeleteModalOpen(false);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Cita cancelada",
-        showConfirmButton: false,
-        timer: 1500
-      });
-    }
-  };*/
+  const filteredRows = rows.filter((row) => {
+    return (
+      row.nombre.toLowerCase().includes(filterText.toLowerCase()) ||
+      row.clave_estudios.toString().includes(filterText.toLowerCase()) ||
+      row.precio.toString().includes(filterText.toLowerCase())
+    );
+  });
 
-  //modificar boton de agregar cotización 
+  const deletePrice = async (analisis) => {
+    //Eliminar de cotizacion
+    const options = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id_analisis: analisis,
+        id_usuario: 2, //ID del usuario en la secion, hacer dinamico una vez hecho el componente login
+      }),
+    };
+
+    const response = await fetch(`${url}/price/delete/`, options);
+    if (response.ok) {
+      console.log("exito");
+      setButton((prevState) => ({
+        ...prevState,
+        [analisis]: false,
+      }));
+    }
+
+  };
+
+  const addPrice = async (analisis) => {
+    //Añadir a cotizacion
+    const options = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id_analisis: analisis,
+        id_usuario: 2, //ID del usuario en la secion, hacer dinamico una vez hecho el componente login
+      }),
+    };
+
+    const response = await fetch(`${url}/price/add/`, options);
+    if (response.ok) {
+      console.log("exito");
+      setButton((prevState) => ({
+        ...prevState,
+        [analisis]: true,
+      }));
+    }
+  };
+
+  //modificar boton de agregar cotización
   const handleOpenAddModal = (id_cita) => {
     setSelectedUserId(id_cita);
     setDeleteModalOpen(true);
@@ -116,83 +140,65 @@ export default function TableEstudios1(params) {
   };
 
   return (
-    <Paper sx={{ width: "100%", height: "100vh", overflow: "hidden" }}>
-      <TableContainer sx={{ width: "100%", height: "100vh" }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((analisis) => {
-              return (
-                
-                <TableRow hover role="checkbox" tabIndex={-1} key={analisis.id_analisis}>
-                  <TableCell>{analisis.nombre}</TableCell>
-                  <TableCell>{analisis.clave_estudios}</TableCell>
-                  <TableCell>{analisis.descripcion}</TableCell>
-                  <TableCell>${analisis.precio}</TableCell>
-                  <TableCell>
-                    <Button> {/*onClick={() => handleOpenAModal(analisis.id_analisis)}*/}
-                      Agregar
-                    </Button>
+    <>
+      <div>
+        <input
+          type="text"
+          placeholder="Buscar..."
+          value={filterText}
+          onChange={(e) => setFilterText(e.target.value)}
+        />
+      </div>
+      <Paper sx={{ width: "100%", height: "100vh", overflow: "hidden" }}>
+        <TableContainer sx={{ width: "100%", height: "100vh" }}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth }}
+                  >
+                    {column.label}
                   </TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-
-      {/* Delete Confirmation Modal */}
-      <Modal
-        open={deleteModalOpen}
-        onClose={() => setDeleteModalOpen(false)}
-        aria-labelledby="delete-modal-title"
-        aria-describedby="delete-modal-description"
-      >
-        <Box
-          sx={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 600,
-            bgcolor: "background.paper",
-            boxShadow: 24,
-            p: 4,
-          }}
-        >
-          <h2 id="delete-modal-title">Confirmación de Cancelación</h2>
-          <p id="delete-modal-description">
-            ¿Estás seguro que deseas quitar el estudio?
-          </p>
-          <Button > {/*onClick={handleDelete} variant="contained" color="error"*/}
-            Sí
-          </Button>
-          <Button onClick={() => setDeleteModalOpen(false)} variant="contained">
-            No
-          </Button>
-        </Box>
-      </Modal>
-    </Paper>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {filteredRows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((analisis) => {
+                  const isButtonActive = buttonState[analisis.id_analisis];
+                  return (
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={analisis.id_analisis}
+                    >
+                      <TableCell>{analisis.nombre}</TableCell>
+                      <TableCell>{analisis.clave_estudios}</TableCell>
+                      <TableCell>{analisis.descripcion}</TableCell>
+                      <TableCell>${analisis.precio}</TableCell>
+                      <TableCell>
+                        {isButtonActive  ? (
+                          <Button onClick={() => deletePrice(analisis.id_analisis)}>
+                            Eliminar
+                          </Button>
+                        ) : (
+                          <Button onClick={() => addPrice(analisis.id_analisis)}>
+                            Agregar
+                          </Button>
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper>
+    </>
   );
 }
