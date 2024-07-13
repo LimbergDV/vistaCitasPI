@@ -8,7 +8,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 
-
 // Métodos POST usados en la página
 const token = import.meta.env.VITE_TOKEN;
 const url = import.meta.env.VITE_URL_BASE;
@@ -64,7 +63,35 @@ export default function TableEstudios1(params) {
       }
     };
 
+    //Saber cuáles analisis ya estan en cotizacion
+    const agregados = async () => {
+      //Eliminar de cotizacion
+      const options = {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id_usuario: 2, //ID del usuario en la secion, hacer dinamico una vez hecho el componente login
+        }),
+      };
+
+      const response = await fetch(`${url}/price/getID/`, options);
+      if (response.ok) {
+        const analisis = await response.json();
+
+        analisis.map((analisis) => {
+          setButton((prevState) => ({
+            ...prevState,
+            [analisis.id_analisis]: true,
+          }));
+        });
+      }
+    };
+
     getData();
+    agregados();
   }, []);
 
   const filteredRows = rows.filter((row) => {
@@ -75,30 +102,27 @@ export default function TableEstudios1(params) {
     );
   });
 
-  const deletePrice = async (analisis) => {
-    //Eliminar de cotizacion
+  const deletePrice = async (id_analisis) => {
+    // Eliminar de cotización
     const options = {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        id_analisis: analisis,
-        id_usuario: 2, //ID del usuario en la secion, hacer dinamico una vez hecho el componente login
-      }),
     };
-
-    const response = await fetch(`${url}/price/delete/`, options);
+  
+    const response = await fetch(`${url}/price/delete/${id_analisis}/2`, options);//Modificar el id de usuario
     if (response.ok) {
       console.log("exito");
       setButton((prevState) => ({
         ...prevState,
-        [analisis]: false,
+        [id_analisis]: false,
       }));
+    } else {
+      console.error("Error al eliminar el análisis");
     }
-
   };
+  
 
   const addPrice = async (analisis) => {
     //Añadir a cotizacion
@@ -182,12 +206,16 @@ export default function TableEstudios1(params) {
                       <TableCell>{analisis.descripcion}</TableCell>
                       <TableCell>${analisis.precio}</TableCell>
                       <TableCell>
-                        {isButtonActive  ? (
-                          <Button onClick={() => deletePrice(analisis.id_analisis)}>
+                        {isButtonActive ? (
+                          <Button
+                            onClick={() => deletePrice(analisis.id_analisis)}
+                          >
                             Eliminar
                           </Button>
                         ) : (
-                          <Button onClick={() => addPrice(analisis.id_analisis)}>
+                          <Button
+                            onClick={() => addPrice(analisis.id_analisis)}
+                          >
                             Agregar
                           </Button>
                         )}
