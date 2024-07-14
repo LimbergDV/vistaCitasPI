@@ -19,6 +19,7 @@ import PageHistorialResultados from './components/Pages/pageHistorialResultados.
 import PageCotizacionUser from './components/Pages/pageCotizacionUser.jsx'
 import PageCotizacionRecepcionista from './components/Pages/pageCotizacionRecepcionista.jsx'
 import PageHistorialPagosRep from './components/Pages/pageHistorialPagosRep.jsx'
+import PageCobroRecepcionista from './components/Pages/pageCobroRecepcionista.jsx'
 
 const router = createBrowserRouter([
   {
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
   {
     path: '/historialPagos',
     element: <PageHistorialPagosRep/>
+  },
+  {
+    path: '/generarPago',
+    element: <PageCobroRecepcionista/>
   },
 
 

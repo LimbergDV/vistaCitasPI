@@ -1,0 +1,183 @@
+.customSecondText {
+    font-size: 24px;
+    text-align: left;
+    padding-left: 5%;
+    color: black;
+    font-weight: bolder;
+    width: 95%;
+    display: flex;
+    gap: 1%;
+    margin: 0;
+  }
+  
+  .customInfoIcon {
+    font-size: 35px;
+  }
+  
+  .customFormLogin .customInputsPrincipal {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 50px 0;
+    font-weight: bolder;
+    color: black;
+  }
+  
+  #date,
+  #date2,
+  #date3 {
+    padding: 19px 10px;
+  }
+  
+  .customFormLogin input {
+    width: 87%;
+    border-radius: 5px;
+    background-color: #d9d9d9;
+    box-shadow: 2px 2px 3px #7c7676;
+    color: black;
+    padding: 10px;
+    border: none;
+  }
+  
+  .customFormLogin input::placeholder {
+    color: #7c7676;
+  }
+  
+  .customFormLogin select {
+    width: 93%;
+    border-radius: 5px;
+    background-color: #d9d9d9;
+    border: none;
+    color: black;
+    padding: 10px;
+    box-shadow: 2px 2px 3px #7c7676;
+  }
+  
+  .customSobrePaciente,
+  .customElegirCita {
+    width: 90%;
+    padding: 0 5% 5% 5%;
+  }
+  
+  .customInputsPrincipal {
+    width: 100%;
+    display: flex;
+  }
+  
+  .customInputsPrincipal > div {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+  }
+  
+  .customDireccion {
+    color: black;
+    margin-bottom: -2%;
+  }
+  
+  .customElegirCita {
+    margin-top: 2%;
+    display: flex;
+    gap: 4%;
+  }
+  
+  .fechas,
+  .motivos {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+  }
+  
+  .btn {
+    text-align: center;
+    width: 100%;
+    padding: 5%;
+  }
+  
+  label {
+    color: #000;
+    font-weight: bold;
+  }
+  
+  .motivosh3 {
+    color: #000;
+    margin-top: -2%;
+    margin-bottom: 0;
+  }
+  
+  .customCotizacionContainer {
+    padding: 5%;
+    font-family: Arial, sans-serif;
+  }
+  
+  .customCotizacionSearch {
+    margin-bottom: 20px;
+  }
+  
+  .customCotizacionSearch h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  
+  .customCotizacionInputs {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 65%;
+    margin-top: -10%;
+    gap: 20px;
+  }
+  
+  .customCotizacionInputGroup {
+    flex: 1 1 100%;
+    max-width: 300px;
+  }
+  
+  .customCotizacionInputGroup label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 150px;
+  }
+  
+  .customCotizacionInputGroup input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 20px);
+    background-color: #d9d9d9;
+  }
+  
+  .customCotizacionInputGroup input::placeholder {
+    color: #4c4848;
+  }
+  
+  .customCotizacionButton {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    width: 280px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 45px;
+    margin-top: 24px;
+  }
+  
+  @media (max-width: 600px) {
+    .customCotizacionInputs {
+      flex-direction: column;
+    }
+  
+    .customCotizacionInputGroup {
+      width: 100%;
+    }
+  
+    .customCotizacionButton {
+      width: 100%;
+      margin-top: 12px;
+    }
+  }
+  
