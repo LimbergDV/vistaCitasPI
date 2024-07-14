@@ -10,7 +10,7 @@ function PageCotizacionUser (){
         <NavBar/>
         <br /> <br />
         <Title title="Cotización"/>
-        <FormCotizacionUser/>
+        <FormCotizacionUser user="Agendar"/>
         <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
         <Footer/>
         </>

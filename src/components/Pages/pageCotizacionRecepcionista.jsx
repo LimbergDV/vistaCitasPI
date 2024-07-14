@@ -2,7 +2,7 @@ import React from "react";
 import Title from "../H'S/title";
 import Footer from "../Footer/footer";
 import NavBarRecepcionista from "../NavBar/navBarRecepcionista";
-import FormCotizacionRecepcionista from "../Forms/FormCotizacionRecepcionista";
+import FormCotizacionUser from "../Forms/FormCotizacionUser";
 
 function PageCotizacionRecepcionista (){
     return(
@@ -10,7 +10,7 @@ function PageCotizacionRecepcionista (){
         <NavBarRecepcionista/>
         <br /> <br />
         <Title title="Cotización"/>
-        <FormCotizacionRecepcionista/>
+        <FormCotizacionUser user="Cobrar"/>
         <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
         <Footer/>
         </>
