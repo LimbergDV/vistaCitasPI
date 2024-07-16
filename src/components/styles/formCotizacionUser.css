@@ -39,6 +39,7 @@
     border-radius: 5px;
     width: calc(100% - 20px);
     background-color: #d9d9d9;
+    color: black;
 }
 
 .form-cotizacion-input-group input::placeholder {
