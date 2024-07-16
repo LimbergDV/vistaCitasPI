@@ -1,0 +1,127 @@
+.main-container {
+  padding: 20px;
+}
+
+.btn-main {
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.print-btn {
+  background-color: #110d0d00;
+  color: #000000;
+  width: 120px; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 110px;
+  margin-top: -110px; 
+}
+
+.icon-add {
+  font-size: 12vh;
+}
+
+.searchSection {
+  display: flex;
+  flex-direction: column; 
+  gap: 10px; 
+}
+
+.searchTitleContainer {
+  display: flex;
+  align-items: center;
+  gap: 15px; 
+  margin-bottom: 10px;
+}
+
+.searchTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+}
+
+.searchPatientSection {
+  margin-top: 30px;
+}
+
+.addAnalysisSection {
+  margin-top: 30px;
+}
+
+.addAnalysisTitle {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.addAnalysisForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+
+.formGroup label {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.formGroup input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #C2BEBE;
+  color: black;
+}
+
+.input-name {
+  width: 50%;
+}
+
+.input-description {
+  width: 50%;
+}
+
+.input-studyKey {
+  width: 50%;
+}
+
+.input-price {
+  width: 50%;
+}
+
+.formActions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  width: 48%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 3%;
+}
+
+.btn-add{
+  width: 22.5%;
+}
+
+.btn-cancel {
+  width: 22.5%;
+  margin-right: 31%;
+}

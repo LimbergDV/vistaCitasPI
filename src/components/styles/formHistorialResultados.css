@@ -36,6 +36,7 @@
     border-radius: 5px;
     width: 30vh;
     background-color: #d9d9d9;
+    color: #000;
   }
   
   .input-group input::placeholder {
@@ -59,7 +60,7 @@
   }
 
   input[type="date"]::-webkit-datetime-edit {
-    color: rgb(105, 104, 104); 
+    color: rgb(0, 0, 0); 
   }
   
   input[type="date"]::-webkit-calendar-picker-indicator {

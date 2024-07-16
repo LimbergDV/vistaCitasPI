@@ -63,8 +63,9 @@ const styles = {
     fontSize: '16px',
     border: '1px solid #ccc',
     borderRadius: '4px 0 0 4px',
-    backgroundColor: 'grey',
+    backgroundColor: '#C2BEBE',
     outline: 'none',
+    color: 'black'
   },
   button: {
     padding: '10px',
