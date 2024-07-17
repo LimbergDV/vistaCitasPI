@@ -9,28 +9,27 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 import { MdLocalPrintshop } from "react-icons/md";
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
+import { fetchData } from "../../fetchData";
 
 const token = import.meta.env.VITE_TOKEN;
 const url = import.meta.env.VITE_URL_BASE;
 
 function formatDateTime(dateTime) {
-   // Crear un objeto Date a partir de la cadena de fecha
-   const date = new Date(dateTime);
+  const date = new Date(dateTime);
 
-   // Obtener los componentes de la fecha
-   const day = String(date.getUTCDate()).padStart(2, '0');
-   const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Los meses van de 0 a 11
-   const year = date.getUTCFullYear();
-   
-   // Obtener los componentes de la hora
-   const hour = String(date.getUTCHours()).padStart(2, '0');
-   const minute = String(date.getUTCMinutes()).padStart(2, '0');
-   const second = String(date.getUTCSeconds()).padStart(2, '0');
+  const day = String(date.getUTCDate()).padStart(2, "0");
+  const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+  const year = date.getUTCFullYear();
 
-   // Formatear la fecha y hora en el nuevo formato
-   const formattedDate = `${day}/${month}/${year} -- ${hour}:${minute}:${second}`;
+  const hour = String(date.getUTCHours()).padStart(2, "0");
+  const minute = String(date.getUTCMinutes()).padStart(2, "0");
+  const second = String(date.getUTCSeconds()).padStart(2, "0");
 
-   return formattedDate;
+  const formattedDate = `${day}-${month}-${year} ${hour}:${minute}:${second}`;
+
+  return formattedDate;
 }
 
 const columns = [
@@ -39,7 +38,7 @@ const columns = [
   { id: "fechaPago", label: "Fecha de pago", minWidth: 170 },
 ];
 
-export default function TableHistorialPagos() {
+export default function TableHistorialPagos({ active, setActive }) {
   const [rows, setRows] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState();
@@ -54,12 +53,9 @@ export default function TableHistorialPagos() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await fetch(
-          `${url}/sales/getAll/`,
-          options
-        );
+        const response = await fetch(`${url}/sales/getAll/`, options);
         const data = await response.json();
-        console.log("Fetched data:", data); // Log the fetched data for debugging
+        console.log("Fetched data:", data); 
         if (Array.isArray(data)) {
           setRows(data);
           setRowsPerPage(data.length);
@@ -73,6 +69,30 @@ export default function TableHistorialPagos() {
 
     getData();
   }, []);
+
+  useEffect(() => {
+    if (active) {
+      const doc = new jsPDF();
+
+      const header = ["Paciente", "Monto", "Fecha del cobro"];
+      const data = rows.map((pago) => [
+        `${pago.nombre} ${pago.apellidoP} ${pago.apellidoM}`,
+        `$${pago.monto}`,
+        formatDateTime(pago.fecha_pago),
+      ]);
+
+      doc.text("Historial de Ventas", 95, 20);
+
+      doc.autoTable({
+        startY: 30,
+        head: [header],
+        body: data,
+      });
+      
+      doc.save("Historial.pdf");
+      setActive(false); // Reset active state to prevent multiple PDF creation
+    }
+  }, [active, rows, setActive]);
 
   return (
     <Paper
@@ -101,9 +121,14 @@ export default function TableHistorialPagos() {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((data) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={data.id_pago}>
+                  <TableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={data.id_pago}
+                  >
                     <TableCell>{`${data.nombre} ${data.apellidoP} ${data.apellidoM}`}</TableCell>
-                    <TableCell>{data.monto}</TableCell>
+                    <TableCell>${data.monto}</TableCell>
                     <TableCell>{formatDateTime(data.fecha_pago)}</TableCell>
                   </TableRow>
                 );

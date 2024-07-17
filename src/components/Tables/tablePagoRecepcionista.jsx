@@ -102,7 +102,7 @@ export default function TablePagoRecepcionista({ onTotal }) {
                     key={analisis.id_analisis}
                   >
                     <TableCell>{analisis.nombre}</TableCell>
-                    <TableCell>{analisis.precio}</TableCell>
+                    <TableCell>${analisis.precio}</TableCell>
                   </TableRow>
                 );
               })}

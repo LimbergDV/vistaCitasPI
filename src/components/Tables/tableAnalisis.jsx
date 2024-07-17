@@ -56,7 +56,7 @@ export default function TableHistorialResultados() {
                     <TableCell>{row.nombre}</TableCell>
                     <TableCell>{row.clave}</TableCell>
                     <TableCell>{row.descripcion}</TableCell>
-                    <TableCell>{row.costo}</TableCell>
+                    <TableCell>${row.costo}</TableCell>
                     <TableCell>
                       <Button> <FaRegEdit /> Editar </Button>
                       <Button> <FaTrashAlt /> Eliminar </Button>

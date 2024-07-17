@@ -128,7 +128,7 @@ export default function TableCotizacionUser({ onTotal }) {
                     key={analisis.id_analisis}
                   >
                     <TableCell>{analisis.nombre}</TableCell>
-                    <TableCell>{analisis.precio}</TableCell>
+                    <TableCell>${analisis.precio}</TableCell>
                     <TableCell>
                       <Button onClick={() => deletePrice(analisis.id_analisis)}>
                         Eliminar
