@@ -49,7 +49,7 @@ function FormAnalisis() {
         editAnalysis(data[0]);
         setEdit(false);
       } else if (deleteA) {
-        console.log("Eliminar");
+        deleteAnalysis(data[0]);
         setDelete(false);
       }
     };
@@ -87,6 +87,46 @@ function FormAnalisis() {
     setAction("UPDATE");
   };
 
+  const addAnalysis = () => {
+    setDisabled(false);
+    setAction("ADD");
+  };
+
+  const deleteAnalysis = (analisis) => {
+    Swal.fire({
+      title: "¿Esta seguro de eliminarlo por completo?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Eliminar",
+      denyButtonText: `Cancelar`,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch(
+            `${url}/analysis/delete/${analisis.id_analisis}`,
+            {
+              method: "DELETE",
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          if (response.ok) {
+            Swal.fire("¡Eliminado correctamente!", "", "success");
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000);
+          }
+        } catch (e) {
+          console.log(e);
+          Swal.fire("Ocurrió un error inesperado", "", "error");
+        }
+      } else if (result.isDenied) {
+        Swal.fire("Cancelado", "", "info");
+      }
+    });
+  };
+
   const handleClick = (action, analisis) => {
     //UPDATE
     if (action === "UPDATE") {
@@ -110,6 +150,51 @@ function FormAnalisis() {
                 body: JSON.stringify(formAnalysis),
               }
             );
+            if (response.ok) {
+              Swal.fire("¡Guardado correctamente!", "", "success");
+              setTimeout(() => {
+                window.location.reload();
+              }, 1000);
+            }
+          } catch (e) {
+            console.log(e);
+            Swal.fire("Ocurrió un error inesperado", "", "error");
+          }
+        } else if (result.isDenied) {
+          setformAnalysis({
+            nombre: "",
+            clave_estudios: "",
+            descripcion: "",
+            precio: "",
+            id_categoria: "",
+          });
+          setDisabled(true);
+          Swal.fire("Cancelado", "", "info");
+        }
+      });
+    } else if (action === "ADD") {
+      //Metodo POST
+      Swal.fire({
+        title: "¿Desea agregarlo?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Sí",
+        denyButtonText: `No`,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            if (formAnalysis.id_categoria === "") {
+              formAnalysis.id_categoria = 1;
+            }
+
+            const response = await fetch(`${url}/analysis/add/`, {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(formAnalysis),
+            });
             if (response.ok) {
               Swal.fire("¡Guardado correctamente!", "", "success");
               setTimeout(() => {
@@ -164,7 +249,7 @@ function FormAnalisis() {
         </div>
         <TableAnalisis data={data} actionE={setEdit} actionD={setDelete} />
         <div className="btn-main">
-          <button className="print-btn">
+          <button className="print-btn" onClick={() => addAnalysis()}>
             <IoIosAddCircleOutline className="icon-add" />
           </button>
         </div>
