@@ -21,6 +21,8 @@ import PageCotizacionRecepcionista from './components/Pages/pageCotizacionRecepc
 import PageHistorialPagosRep from './components/Pages/pageHistorialPagosRep.jsx'
 import PageCobroRecepcionista from './components/Pages/pageCobroRecepcionista.jsx'
 import PageAnalisis from './components/Pages/pageAnalisis.jsx'
+import Login from './components/Pages/login.jsx'
+import RegisterUser from './components/Pages/registerUser.jsx'
 
 const router = createBrowserRouter([
   {
@@ -101,6 +103,16 @@ const router = createBrowserRouter([
   {
     path: '/analisis',
     element: <PageAnalisis/>
+  },
+  {
+    path: '/login',
+    element: <Login/>
+
+  },
+  {
+    path: '/registrate',
+    element: <RegisterUser/>
+
   },
 
 

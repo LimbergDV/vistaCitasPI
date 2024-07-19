@@ -1,0 +1,278 @@
+  .mainContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(../images/fondoDeLogin.jpeg) center center no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  
+  .formRegister {
+    width: 620px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(30px);
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    padding: 2rem 40px;
+  }
+  
+  .formRegister h2 {
+    font-size: 30px;
+    text-align: center;
+    height: 130px;
+    line-height: 35px;
+  }
+  
+  .infoPersonal {
+    font-size: 23px;
+    text-align: center;
+    height: 21px;
+  }
+  
+  .formRegister .inputName {
+    position: relative;
+    width: 40%;
+    height: 50px;
+    margin: 30px 0;
+    font-weight: bolder;
+  }
+  
+  .inputName input {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 5%;
+    color: black;
+  }
+  
+  .formRegister .inputApePat {
+    position: relative;
+    width: 40%;
+    height: 50px;
+    left: 321px;
+    bottom: 78px;
+    font-weight: bolder;
+  }
+  
+  .inputApePat input {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 5%;
+    color: black;
+  }
+  
+  .formRegister .inputApeMat {
+    position: relative;
+    width: 40%;
+    height: 50px;
+    font-weight: bolder;
+  }
+  
+  .inputApeMat input {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 5%;
+    color: black;
+  }
+  
+  .formRegister .inputTelefono {
+    position: relative;
+    width: 40%;
+    left: 321px;
+    bottom: 50px;
+    font-weight: bolder;
+  }
+  
+  .inputTelefono input {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 15px;
+    margin-top: 5%;
+    color: black;
+  }
+  
+  .infoSesion {
+    font-size: 23px;
+    text-align: center;
+    height: 50px;
+  }
+  
+  .formRegister .inputMail {
+    position: relative;
+    width: 40%;
+    height: 50px;
+    margin: 30px 0;
+    font-weight: bolder;
+  }
+  
+  .inputMail input {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 5%;
+    color: black;
+  }
+  
+  .formRegister .inputPassword {
+    position: relative;
+    width: 40%;
+    height: 50px;
+    left: 321px;
+    bottom: 80px;
+    font-weight: bolder;
+  }
+  
+  .inputPassword input {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 5%;
+    color: black;
+  }
+  
+  .formRegister .inputPassConfirm {
+    position: relative;
+    width: 40%;
+    height: 50px;
+    font-weight: bolder;
+  }
+  
+  .inputPassConfirm input {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 5%;
+    color: black;
+  }
+  
+  .formRegister button {
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background: #272973;
+    color: white;
+    font-size: 16px;
+    font-weight: bolder;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    margin: 75px 0;
+    left: 0%;
+  }
+  
+  .formRegister .registerOpcion {
+    font-size: 16px;
+    text-align: center;
+    height: 70px;
+  }
+  
+  @media (max-width: 768px) {
+    .formRegister {
+      width: 90%;
+      padding: 20px;
+    }
+  
+    .formRegister h2 {
+      font-size: 25px;
+      height: auto;
+      line-height: normal;
+      margin-bottom: 20px;
+    }
+  
+    .infoPersonal, .infoSesion {
+      font-size: 20px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+  
+    .formRegister .inputName,
+    .formRegister .inputApePat,
+    .formRegister .inputApeMat,
+    .formRegister .inputTelefono,
+    .formRegister .inputMail,
+    .formRegister .inputPassword,
+    .formRegister .inputPassConfirm {
+      width: 100%;
+      margin-bottom: 15px;
+      left: 0;
+      bottom: 0;
+    }
+  
+    .formRegister .inputName, 
+    .formRegister .inputApePat,
+    .formRegister .inputApeMat,
+    .formRegister .inputTelefono,
+    .formRegister .inputMail,
+    .formRegister .inputPassword,
+    .formRegister .inputPassConfirm {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+  
+    .formRegister .inputName input, 
+    .formRegister .inputApePat input,
+    .formRegister .inputApeMat input,
+    .formRegister .inputTelefono input,
+    .formRegister .inputMail input,
+    .formRegister .inputPassword input,
+    .formRegister .inputPassConfirm input {
+      width: 100%;
+      font-size: 14px;
+      padding: 10px;
+      margin-top: 5px;
+    }
+  
+    .formRegister button {
+      font-size: 14px;
+      margin-top: 40px;
+    }
+  
+    .formRegister .registerOpcion {
+      font-size: 14px;
+      height: auto;
+      margin-top: 20px;
+    }
+  }
+  

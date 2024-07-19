@@ -239,6 +239,7 @@ function FormCobroRecepcionista() {
                 </div>
               </div>
               <h3 className="direccion">Dirección</h3>
+              <br />
               <div className="inputsPrincipal">
                 <div>
                   <label htmlFor="calle" className="street">
