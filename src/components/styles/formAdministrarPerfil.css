@@ -1,0 +1,102 @@
+.principal-title {
+    font-size: 34px;
+    text-align: center;
+    color: black;
+    font-weight: bolder;
+  }
+  
+  .principal-section-title {
+    font-size: 24px;
+    text-align: left;
+    padding-left: 5%;
+    color: black;
+    font-weight: bolder;
+    width: 95%;
+    display: flex;
+    gap: 1%;
+    margin: 0;
+  }
+  
+  .principal-icon-info {
+    font-size: 35px;
+  }
+  
+  .principal-form .principal-input-group {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 50px 0;
+    font-weight: bolder;
+    color: black;
+  }
+  
+  #date,
+  #phone {
+    padding: 19px 10px;
+  }
+  
+  .principal-form input {
+    width: 87%;
+    border-radius: 5px;
+    background-color: #d9d9d9;
+    box-shadow: 2px 2px 3px #7c7676;
+    color: black;
+    padding: 10px;
+    border: none;
+  }
+  
+  .principal-form input::placeholder {
+    color: #7c7676;
+  }
+  
+  .principal-form select {
+    width: 93%;
+    border-radius: 5px;
+    background-color: #d9d9d9;
+    border: none;
+    color: black;
+    padding: 10px;
+    box-shadow: 2px 2px 3px #7c7676;
+  }
+  
+  .principal-patient-details,
+  .btn-update-container {
+    width: 90%;
+    padding: 0 5% 5% 5%;
+  }
+  
+  .principal-input-group {
+    width: 100%;
+    display: flex;
+  }
+  
+  .principal-input-group > div {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+  }
+  
+  .principal-address {
+    color: black;
+    margin-bottom: -2%;
+  }
+  
+  .btn-update-container {
+    margin-top: 2%;
+    display: flex;
+    gap: 4%;
+  }
+  
+  
+  label {
+    color: #000;
+    font-weight: bold;
+  }
+  
+  .principal-reasons-title {
+    color: #000;
+    margin-top: -2%;
+    margin-bottom: 0;
+  }
+  
