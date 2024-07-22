@@ -23,6 +23,7 @@ import PageCobroRecepcionista from './components/Pages/pageCobroRecepcionista.js
 import PageAnalisis from './components/Pages/pageAnalisis.jsx'
 import Login from './components/Pages/login.jsx'
 import RegisterUser from './components/Pages/registerUser.jsx'
+import PageAdministrarPerfil from './components/Pages/pageAdminstrarPerfil.jsx'
 
 const router = createBrowserRouter([
   {
@@ -114,8 +115,11 @@ const router = createBrowserRouter([
     element: <RegisterUser/>
 
   },
+  {
+    path: '/administrarPerfil',
+    element: <PageAdministrarPerfil/>
 
-
+  },
 
 ])
 
