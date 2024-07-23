@@ -54,6 +54,7 @@
   font-size: 16px;
   padding: 20px;
   box-sizing: border-box;
+  color: black;
 }
 
 .input-email .icon,
@@ -86,6 +87,12 @@
   font-size: 16px;
   text-align: center;
   margin: 20px 0;
+}
+
+.admin-option button{
+  width: 50%;
+  background-color: rgb(0, 106, 255);
+  color: white;
 }
 
 /* Responsive Styles */

@@ -24,6 +24,8 @@ import PageAnalisis from './components/Pages/pageAnalisis.jsx'
 import Login from './components/Pages/login.jsx'
 import RegisterUser from './components/Pages/registerUser.jsx'
 import PageAdministrarPerfil from './components/Pages/pageAdminstrarPerfil.jsx'
+import LoginAdmin from './components/Pages/loginAdmin.jsx'
+import LoginRecepcionista from './components/Pages/loginRecepcionista.jsx'
 
 const router = createBrowserRouter([
   {
@@ -118,6 +120,16 @@ const router = createBrowserRouter([
   {
     path: '/administrarPerfil',
     element: <PageAdministrarPerfil/>
+
+  },
+  {
+    path: '/loginA',
+    element: <LoginAdmin/>
+
+  },
+  {
+    path: '/loginR',
+    element: <LoginRecepcionista/>
 
   },
 
