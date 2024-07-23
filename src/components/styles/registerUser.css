@@ -206,6 +206,11 @@
     text-align: center;
     height: 70px;
   }
+
+  .registerOpcion a{
+    color: blue;
+    text-decoration: underline;
+  }
   
   @media (max-width: 768px) {
     .formRegister {

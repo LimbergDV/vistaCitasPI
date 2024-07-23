@@ -95,6 +95,11 @@
   color: white;
 }
 
+.register-option a{
+  color: blue;
+  text-decoration: underline;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .login-form {
