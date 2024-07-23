@@ -28,7 +28,7 @@ function CardCatalogo2(){
             <div className="card-content">
                 <h3>Microbiología Médica</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ut nulla vel sit reprehenderit, unde molestiae vero magni veritatis architecto minus mollitia distinctio iste dignissimos voluptatem, neque pariatur cum! Expedita!</p>
-                <a href="" className="btn" onClick={handleButtonClick}>Ver Estudios</a>
+                <a href="" className="btn-4" onClick={handleButtonClick}>Ver Estudios</a>
             </div>
             </div>
 
@@ -37,7 +37,7 @@ function CardCatalogo2(){
             <div className="card-content">
                 <h3>Microbiología Sanitaria</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ut nulla vel sit reprehenderit, unde molestiae vero magni veritatis architecto minus mollitia distinctio iste dignissimos voluptatem, neque pariatur cum! Expedita!</p>
-                <a href="" className="btn" onClick={handleButtonClick2}>Ver Estudios</a>
+                <a href="" className="btn-5" onClick={handleButtonClick2}>Ver Estudios</a>
             </div>
             </div>
 
@@ -46,7 +46,7 @@ function CardCatalogo2(){
             <div className="card-content">
                 <h3>Citología e Histopatologías</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ut nulla vel sit reprehenderit, unde molestiae vero magni veritatis architecto minus mollitia distinctio iste dignissimos voluptatem, neque pariatur cum! Expedita!</p>
-                <a href="" className="btn" onClick={handleButtonClick3}>Ver Estudios</a>
+                <a href="" className="btn-6" onClick={handleButtonClick3}>Ver Estudios</a>
             </div>
             </div>
         </div>
