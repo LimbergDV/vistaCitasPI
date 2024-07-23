@@ -44,26 +44,20 @@ function Login() {
       });
     } else {
       const res = await response.json();
-      console.log(res);
 
-      if (res.access) {
-        switch (res.id_rol) {
-          case 1: //Usuario
-            localStorage.setItem("token", res.token);
-            localStorage.setItem("id_usuario", res.id_usuario);
-            break;
-          case 2: //Recepcionista
-            localStorage.setItem("token", res.token);
-            localStorage.setItem("id_usuario", res.id_usuario);
-            break;
-          case 3: //Administrador
-            localStorage.setItem("token", res.token);
-            localStorage.setItem("id_usuario", res.id_usuario);
-            break;
-          default:
-            console.error("Ocurrio un problema");
-            break;
+      if (res.id_rol == 1) {
+        if (res.access) {
+          localStorage.setItem("token", res.token);
+          localStorage.setItem("id_usuario", res.id_usuario);
         }
+      } else {
+        Swal.fire({
+          position: "center",
+          icon: "info",
+          title: "Usted no es usuario corriente",
+          text: "Revisa tu usuario y contraseña",
+          showConfirmButton: true,
+        });
       }
     }
   };
