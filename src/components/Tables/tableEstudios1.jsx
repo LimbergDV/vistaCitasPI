@@ -74,7 +74,7 @@ export default function TableEstudios1(params) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id_usuario: 2, //ID del usuario en la secion, hacer dinamico una vez hecho el componente login
+          id_usuario: id_usuario, //ID del usuario en la secion, hacer dinamico una vez hecho el componente login
         }),
       };
 

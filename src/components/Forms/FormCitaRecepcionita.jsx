@@ -27,7 +27,7 @@ function FormCitaRecepcionita() {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate("/citasAgendadas");
+    navigate("/citasAgendadasR");
   };
 
   // Construcción del modelo de datos para insertar una cita
