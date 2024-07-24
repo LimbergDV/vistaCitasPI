@@ -1,4 +1,4 @@
-const token = import.meta.env.VITE_TOKEN;
+const token = localStorage.getItem("token");
 
 const getSuspender = (promise) => {
   let status = "pending";

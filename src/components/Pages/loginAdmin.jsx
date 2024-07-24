@@ -49,6 +49,7 @@ function Login() {
         if (res.access) {
           localStorage.setItem("token", res.token);
           localStorage.setItem("id_usuario", res.id_usuario);
+          localStorage.setItem("id_rol", res.id_rol);
         }
       } else {
         Swal.fire({

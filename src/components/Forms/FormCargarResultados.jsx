@@ -10,7 +10,7 @@ import "@react-pdf-viewer/default-layout/lib/styles/index.css";
 import Swal from "sweetalert2";
 
 const url = import.meta.env.VITE_URL_BASE;
-const token = import.meta.env.VITE_TOKEN;
+const token = localStorage.getItem("token");
 
 const currentDate = new Date();
 const year = currentDate.getFullYear();

@@ -7,7 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 
-const token = import.meta.env.VITE_TOKEN;
+const token = localStorage.getItem("token");
 const url = import.meta.env.VITE_URL_BASE;
 
 const columns = [

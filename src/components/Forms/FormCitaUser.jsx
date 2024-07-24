@@ -6,7 +6,7 @@ import { useState } from "react";
 import { fetchData } from "../../fetchData";
 
 // Métodos GET usados en la página
-const token = import.meta.env.VITE_TOKEN;
+const token = localStorage.getItem("token");
 const url = import.meta.env.VITE_URL_BASE;
 const options = {
   method: "GET",

@@ -8,7 +8,7 @@ import { fetchData } from "../../fetchData";
 import Swal from "sweetalert2";
 
 // Métodos GET usados en la página
-const token = import.meta.env.VITE_TOKEN;
+const token = localStorage.getItem("token");
 const url = import.meta.env.VITE_URL_BASE;
 
 const options = {

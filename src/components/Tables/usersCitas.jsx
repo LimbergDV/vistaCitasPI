@@ -21,7 +21,7 @@ const day = currentDate.getDate();
 const fecha_actual = `${year}-${month}-${day}`;
 
 // Métodos GET usados en la página
-const token = import.meta.env.VITE_TOKEN;
+const token = localStorage.getItem("token");
 const url = import.meta.env.VITE_URL_BASE;
 
 const options = {

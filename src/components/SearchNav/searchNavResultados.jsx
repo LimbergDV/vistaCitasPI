@@ -5,7 +5,7 @@ import "../styles/searchNavResultados.css";
 import Swal from "sweetalert2";
 
 function SearchNavResultados({ onSearchData, resource }) {
-  const token = import.meta.env.VITE_TOKEN;
+  const token = localStorage.getItem("token");
   const url = import.meta.env.VITE_URL_BASE;
 
   const options = {

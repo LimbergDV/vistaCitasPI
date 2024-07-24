@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 // Métodos GET usados en la página
-const token = import.meta.env.VITE_TOKEN;
+const token = localStorage.getItem("token");
 const url = import.meta.env.VITE_URL_BASE;
 
 function FormAnalisis() {

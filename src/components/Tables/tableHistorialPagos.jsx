@@ -13,7 +13,7 @@ import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 import { fetchData } from "../../fetchData";
 
-const token = import.meta.env.VITE_TOKEN;
+const token = localStorage.getItem("token");
 const url = import.meta.env.VITE_URL_BASE;
 
 function formatDateTime(dateTime) {

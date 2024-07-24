@@ -1,57 +1,109 @@
 import React from "react";
 import "../styles/cardCatalogo2.css";
-import { useNavigate } from 'react-router-dom';
-import img1 from "../images/master-en-microbiologia-clinica.jpg"
-import img2 from "../images/pexels-edward-jenner-4033148-scaled.jpg"
-import img3 from "../images/AdobeStock_197669370-768x512.webp"
+import { useNavigate } from "react-router-dom";
+import img1 from "../images/master-en-microbiologia-clinica.jpg";
+import img2 from "../images/pexels-edward-jenner-4033148-scaled.jpg";
+import img3 from "../images/AdobeStock_197669370-768x512.webp";
 
+const option = parseInt(localStorage.getItem("id_rol"));
 
-function CardCatalogo2(){
-    const navigate = useNavigate();
+function CardCatalogo2() {
+  const navigate = useNavigate();
 
-    const handleButtonClick = () => {
-        navigate('/microbiologiaMedica'); 
-      };
+  const handleButtonClick = () => {
+    switch (parseInt(option)) {
+        case 1:
+          navigate("/microbiologiaMedica");
+          break;
+        case 2:
+          navigate("/microbiologiaMedicaR");
+          break;
+        case 3:
+          navigate("/microbiologiaMedicaA");
+          break;
+      }
+  };
 
-      const handleButtonClick2 = () => {
-        navigate('/microbiologiaSanitaria'); 
-      }; 
+  const handleButtonClick2 = () => {
+    switch (parseInt(option)) {
+        case 1:
+          navigate("/microbiologiaSanitaria");
+          break;
+        case 2:
+          navigate("/microbiologiaSanitariaR");
+          break;
+        case 3:
+          navigate("/microbiologiaSanitariaA");
+          break;
+      }
+  };
 
-      const handleButtonClick3 = () => {
-        navigate('/citologia&histopatologia'); 
-      }; 
-    return(
-        <>
-        <div className="card-container">
-            <div className="card">
-            <img src={img1}/>
-            <div className="card-content">
-                <h3>Microbiología Médica</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ut nulla vel sit reprehenderit, unde molestiae vero magni veritatis architecto minus mollitia distinctio iste dignissimos voluptatem, neque pariatur cum! Expedita!</p>
-                <a href="" className="btn-4" onClick={handleButtonClick}>Ver Estudios</a>
-            </div>
-            </div>
-
-            <div className="card">
-            <img src={img2}/>
-            <div className="card-content">
-                <h3>Microbiología Sanitaria</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ut nulla vel sit reprehenderit, unde molestiae vero magni veritatis architecto minus mollitia distinctio iste dignissimos voluptatem, neque pariatur cum! Expedita!</p>
-                <a href="" className="btn-5" onClick={handleButtonClick2}>Ver Estudios</a>
-            </div>
-            </div>
-
-            <div className="card">
-            <img src={img3}/>
-            <div className="card-content">
-                <h3>Citología e Histopatologías</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ut nulla vel sit reprehenderit, unde molestiae vero magni veritatis architecto minus mollitia distinctio iste dignissimos voluptatem, neque pariatur cum! Expedita!</p>
-                <a href="" className="btn-6" onClick={handleButtonClick3}>Ver Estudios</a>
-            </div>
-            </div>
+  const handleButtonClick3 = () => {
+    switch (parseInt(option)) {
+        case 1:
+          navigate("/citologia&histopatologia");
+          break;
+        case 2:
+          navigate("/citologia&histopatologiaR");
+          break;
+        case 3:
+          navigate("/citologia&histopatologiaA");
+          break;
+      }
+  };
+  return (
+    <>
+      <div className="card-container">
+        <div className="card">
+          <img src={img1} />
+          <div className="card-content">
+            <h3>Microbiología Médica</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ut
+              nulla vel sit reprehenderit, unde molestiae vero magni veritatis
+              architecto minus mollitia distinctio iste dignissimos voluptatem,
+              neque pariatur cum! Expedita!
+            </p>
+            <a href="" className="btn-4" onClick={handleButtonClick}>
+              Ver Estudios
+            </a>
+          </div>
         </div>
-        </>
-    )
+
+        <div className="card">
+          <img src={img2} />
+          <div className="card-content">
+            <h3>Microbiología Sanitaria</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ut
+              nulla vel sit reprehenderit, unde molestiae vero magni veritatis
+              architecto minus mollitia distinctio iste dignissimos voluptatem,
+              neque pariatur cum! Expedita!
+            </p>
+            <a href="" className="btn-5" onClick={handleButtonClick2}>
+              Ver Estudios
+            </a>
+          </div>
+        </div>
+
+        <div className="card">
+          <img src={img3} />
+          <div className="card-content">
+            <h3>Citología e Histopatologías</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ut
+              nulla vel sit reprehenderit, unde molestiae vero magni veritatis
+              architecto minus mollitia distinctio iste dignissimos voluptatem,
+              neque pariatur cum! Expedita!
+            </p>
+            <a href="" className="btn-6" onClick={handleButtonClick3}>
+              Ver Estudios
+            </a>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
 
-export default CardCatalogo2
+export default CardCatalogo2;
