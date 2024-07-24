@@ -29,13 +29,21 @@ import ProtectedRecep from "./components/utils/ProtectedRecep.jsx";
 import PageInicio from "./components/Pages/pageInicio.jsx";
 
 export default function App() {
-  const [isAuthenticated, setAuthen] = useState(
-    localStorage.getItem("isAuthenticated") === "true"
+  const [isLoggedAdmin, setLoggedAdmin] = useState(
+    localStorage.getItem("isLoggedAdmin") === "true"
+  );
+  const [isLoggedRecep, setLoggedRecep] = useState(
+    localStorage.getItem("isLoggedRecep") === "true"
+  );
+  const [isLoggedUser, setLoggedUser] = useState(
+    localStorage.getItem("isLoggedUser") === "true"
   );
 
   useEffect(() => {
-    localStorage.setItem("isAuthenticated", isAuthenticated);
-  }, [isAuthenticated]);
+    localStorage.setItem("isLoggedAdmin", isLoggedAdmin);
+    localStorage.setItem("isLoggedRecep", isLoggedRecep);
+    localStorage.setItem("isLoggedUser", isLoggedUser);
+  }, [isLoggedAdmin, isLoggedRecep, isLoggedUser]);
 
   const router = createBrowserRouter([
     {
@@ -44,155 +52,155 @@ export default function App() {
     },
     {
       path: "/consulta",
-      element: <ProtectedUser element={PageCitaUser} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedUser element={PageCitaUser} isAuthenticated={isLoggedUser} />,
     },
     {
       path: "/consultaRecepcionista",
-      element: <ProtectedRecep element={PageCitaRecepcionista} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedRecep element={PageCitaRecepcionista} isAuthenticated={isLoggedRecep} />,
     },
     {
       path: "/citasAgendadasR",
-      element: <ProtectedRecep element={PageCitasAgendadasRec} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedRecep element={PageCitasAgendadasRec} isAuthenticated={isLoggedRecep} />,
     },
     {
       path: "/citasAgendadasA",
-      element: <ProtectedAdmin element={PageCitasAgendadasRec} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedAdmin element={PageCitasAgendadasRec} isAuthenticated={isLoggedAdmin} />,
     },
     {
       path: "/catalogo",
-      element: <ProtectedUser element={PageCatalogoServicios} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedUser element={PageCatalogoServicios} isAuthenticated={isLoggedUser} />,
     },
     {
       path: "/catalogoA",
-      element: <ProtectedAdmin element={PageCatalogoServicios} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedAdmin element={PageCatalogoServicios} isAuthenticated={isLoggedAdmin} />,
     },
     {
       path: "/catalogoR",
-      element: <ProtectedRecep element={PageCatalogoServicios} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedRecep element={PageCatalogoServicios} isAuthenticated={isLoggedRecep} />,
     },
     {
       path: "/quimicaClinica",
-      element: <ProtectedUser element={PageQuimicaClinica} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedUser element={PageQuimicaClinica} isAuthenticated={isLoggedUser} />,
     },
     {
       path: "/biologiaMolecular",
-      element: <ProtectedUser element={PageBiologiaMolecular} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedUser element={PageBiologiaMolecular} isAuthenticated={isLoggedUser} />,
     },
     {
       path: "/alergenos",
-      element: <ProtectedUser element={PageAlergenos} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedUser element={PageAlergenos} isAuthenticated={isLoggedUser} />,
     },
     {
       path: "/microbiologiaMedica",
-      element: <ProtectedUser element={PageMicrobiologiaMedica} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedUser element={PageMicrobiologiaMedica} isAuthenticated={isLoggedUser} />,
     },
     {
       path: "/microbiologiaSanitaria",
-      element: <ProtectedUser element={PageMicrobiologiaSanitaria} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedUser element={PageMicrobiologiaSanitaria} isAuthenticated={isLoggedUser} />,
     },
     {
       path: "/citologia&histopatologia",
-      element: <ProtectedUser element={PageCitologia} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedUser element={PageCitologia} isAuthenticated={isLoggedUser} />,
     },
     {
       path: "/quimicaClinicaR",
-      element: <ProtectedRecep element={PageQuimicaClinica} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedRecep element={PageQuimicaClinica} isAuthenticated={isLoggedRecep} />,
     },
     {
       path: "/biologiaMolecularR",
-      element: <ProtectedRecep element={PageBiologiaMolecular} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedRecep element={PageBiologiaMolecular} isAuthenticated={isLoggedRecep} />,
     },
     {
       path: "/alergenosR",
-      element: <ProtectedRecep element={PageAlergenos} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedRecep element={PageAlergenos} isAuthenticated={isLoggedRecep} />,
     },
     {
       path: "/microbiologiaMedicaR",
-      element: <ProtectedRecep element={PageMicrobiologiaMedica} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedRecep element={PageMicrobiologiaMedica} isAuthenticated={isLoggedRecep} />,
     },
     {
       path: "/microbiologiaSanitariaR",
-      element: <ProtectedRecep element={PageMicrobiologiaSanitaria} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedRecep element={PageMicrobiologiaSanitaria} isAuthenticated={isLoggedRecep} />,
     },
     {
       path: "/citologia&histopatologiaR",
-      element: <ProtectedRecep element={PageCitologia} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedRecep element={PageCitologia} isAuthenticated={isLoggedRecep} />,
     },
     {
       path: "/quimicaClinicaA",
-      element: <ProtectedAdmin element={PageQuimicaClinica} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedAdmin element={PageQuimicaClinica} isAuthenticated={isLoggedAdmin} />,
     },
     {
       path: "/biologiaMolecularA",
-      element: <ProtectedAdmin element={PageBiologiaMolecular} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedAdmin element={PageBiologiaMolecular} isAuthenticated={isLoggedAdmin} />,
     },
     {
       path: "/alergenosA",
-      element: <ProtectedAdmin element={PageAlergenos} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedAdmin element={PageAlergenos} isAuthenticated={isLoggedAdmin} />,
     },
     {
       path: "/microbiologiaMedicaA",
-      element: <ProtectedAdmin element={PageMicrobiologiaMedica} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedAdmin element={PageMicrobiologiaMedica} isAuthenticated={isLoggedAdmin} />,
     },
     {
       path: "/microbiologiaSanitariaA",
-      element: <ProtectedAdmin element={PageMicrobiologiaSanitaria} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedAdmin element={PageMicrobiologiaSanitaria} isAuthenticated={isLoggedAdmin} />,
     },
     {
       path: "/citologia&histopatologiaA",
-      element: <ProtectedAdmin element={PageCitologia} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedAdmin element={PageCitologia} isAuthenticated={isLoggedAdmin} />,
     },
     {
       path: "/cargarResultados",
-      element: <ProtectedAdmin element={PageCargarResultados} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedAdmin element={PageCargarResultados} isAuthenticated={isLoggedAdmin} />,
     },
     {
       path: "/historialResultados",
-      element: <ProtectedUser element={PageHistorialResultados} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedUser element={PageHistorialResultados} isAuthenticated={isLoggedUser} />,
     },
     {
       path: "/cotizacion",
-      element: <ProtectedUser element={PageCotizacionUser} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedUser element={PageCotizacionUser} isAuthenticated={isLoggedUser} />,
     },
     {
       path: "/cotizacionRecepcionista",
-      element: <ProtectedRecep element={PageCotizacionRecepcionista} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedRecep element={PageCotizacionRecepcionista} isAuthenticated={isLoggedRecep} />,
     },
     {
       path: "/historialPagosA",
-      element: <ProtectedAdmin element={PageHistorialPagosRep} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedAdmin element={PageHistorialPagosRep} isAuthenticated={isLoggedAdmin} />,
     },
     {
       path: "/historialPagosR",
-      element: <ProtectedRecep element={PageHistorialPagosRep} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedRecep element={PageHistorialPagosRep} isAuthenticated={isLoggedRecep} />,
     },
     {
       path: "/generarPago",
-      element: <ProtectedRecep element={PageCobroRecepcionista} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedRecep element={PageCobroRecepcionista} isAuthenticated={isLoggedRecep} />,
     },
     {
       path: "/analisis",
-      element: <ProtectedAdmin element={PageAnalisis} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedAdmin element={PageAnalisis} isAuthenticated={isLoggedAdmin} />,
     },
     {
       path: "/login",
-      element: <Login authen={setAuthen} />,
+      element: <Login authen={setLoggedUser} />,
     },
     {
       path: "/registrate",
-      element: <RegisterUser />,
+      element: <RegisterUser/>,
     },
     {
       path: "/administrarPerfil",
-      element: <ProtectedUser element={PageAdministrarPerfil} isAuthenticated={isAuthenticated} />,
+      element: <ProtectedUser element={PageAdministrarPerfil} isAuthenticated={isLoggedUser} />,
     },
     {
       path: "/loginA",
-      element: <LoginAdmin />,
+      element: <LoginAdmin authen={setLoggedAdmin}/>,
     },
     {
       path: "/loginR",
-      element: <LoginRecepcionista />,
+      element: <LoginRecepcionista authen={setLoggedRecep}/>,
     },
   ]);
 

@@ -51,7 +51,7 @@ function Login({authen}) {
           localStorage.setItem("id_usuario", res.id_usuario);
           localStorage.setItem("id_rol", res.id_rol);
           authen(true);
-          navigate("/catalogo");
+          navigate("/");
         }
       } else {
         Swal.fire({

@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 const url = import.meta.env.VITE_URL_BASE;
 
-function Login() {
+function Login({authen}) {
   const navigate = useNavigate();
 
   const [formLogin, setFormLogin] = useState({
@@ -50,6 +50,8 @@ function Login() {
           localStorage.setItem("token", res.token);
           localStorage.setItem("id_usuario", res.id_usuario);
           localStorage.setItem("id_rol", res.id_rol);
+          authen(true);
+          navigate("/");
         }
       } else {
         Swal.fire({
