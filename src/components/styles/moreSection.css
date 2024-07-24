@@ -1,0 +1,46 @@
+.more-section {
+    padding: 80px 0;
+    background-color: #f9f8fe;
+}
+
+.more-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.more-texts {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.more-subtitle {
+    font-size: 2.1rem;
+    margin-bottom: 1rem;
+}
+
+.more-paragraph {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.more-cta {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff8400;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.more-figure {
+    text-align: center;
+}
+
+.more-img {
+    height: 30%;
+    width: 40%;
+}

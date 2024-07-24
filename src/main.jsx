@@ -26,11 +26,12 @@ import RegisterUser from './components/Pages/registerUser.jsx'
 import PageAdministrarPerfil from './components/Pages/pageAdminstrarPerfil.jsx'
 import LoginAdmin from './components/Pages/loginAdmin.jsx'
 import LoginRecepcionista from './components/Pages/loginRecepcionista.jsx'
+import PageInicio from './components/Pages/pageInicio.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App/>
+    element: <PageInicio/>
   },
   {
     path: '/consulta',
