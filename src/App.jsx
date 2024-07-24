@@ -26,6 +26,7 @@ import LoginRecepcionista from "./components/Pages/loginRecepcionista.jsx";
 import ProtectedUser from "./components/utils/ProtectedUser.jsx";
 import ProtectedAdmin from "./components/utils/ProtectedAdmin.jsx";
 import ProtectedRecep from "./components/utils/ProtectedRecep.jsx";
+import PageInicio from "./components/Pages/pageInicio.jsx";
 
 export default function App() {
   const [isAuthenticated, setAuthen] = useState(
@@ -39,7 +40,7 @@ export default function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <ProtectedUser element={PageCatalogoServicios} isAuthenticated={isAuthenticated} />,
+      element: <PageInicio></PageInicio>,
     },
     {
       path: "/consulta",
