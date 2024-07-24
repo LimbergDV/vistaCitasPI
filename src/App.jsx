@@ -195,6 +195,14 @@ export default function App() {
       element: <ProtectedUser element={PageAdministrarPerfil} isAuthenticated={isLoggedUser} />,
     },
     {
+      path: "/administrarPerfilA",
+      element: <ProtectedAdmin element={PageAdministrarPerfil} isAuthenticated={isLoggedUser} />,
+    },
+    {
+      path: "/administrarPerfilR",
+      element: <ProtectedRecep element={PageAdministrarPerfil} isAuthenticated={isLoggedUser} />,
+    },
+    {
       path: "/loginA",
       element: <LoginAdmin authen={setLoggedAdmin}/>,
     },

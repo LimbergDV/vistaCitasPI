@@ -13,7 +13,7 @@ function FormCotizacionUser({ user }) {
     if (user === "Agendar") {
       navigate("/consulta");
     } else if (user === "Cobrar") {
-      navigate("/citasAgendadas");
+      navigate("/generarPago");
     }
   };
 

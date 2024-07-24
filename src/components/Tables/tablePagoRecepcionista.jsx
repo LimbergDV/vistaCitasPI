@@ -9,6 +9,7 @@ import TableRow from "@mui/material/TableRow";
 
 const token = localStorage.getItem("token");
 const url = import.meta.env.VITE_URL_BASE;
+const id_usuario = localStorage.getItem("id_usuario");
 
 const columns = [
   { id: "nombre", label: "Nombre", minWidth: 170 },
@@ -28,7 +29,7 @@ export default function TablePagoRecepcionista({ onTotal }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id_usuario: 2, //Modificar
+        id_usuario: id_usuario, //Modificar
       }),
     };
 

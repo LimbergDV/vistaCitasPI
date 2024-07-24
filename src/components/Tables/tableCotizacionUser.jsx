@@ -9,6 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 
 const token = localStorage.getItem("token");
+const id_usuario = parseInt(localStorage.getItem("id_usuario"));
 const url = import.meta.env.VITE_URL_BASE;
 
 const columns = [
@@ -30,7 +31,7 @@ export default function TableCotizacionUser({ onTotal }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id_usuario: 2, //Modificar
+        id_usuario: id_usuario, //Modificar
       }),
     };
 
@@ -73,7 +74,7 @@ export default function TableCotizacionUser({ onTotal }) {
     };
 
     const response = await fetch(
-      `${url}/price/delete/${id_analisis}/2`,
+      `${url}/price/delete/${id_analisis}/${id_usuario}`,
       options
     );
     if (response.ok) {

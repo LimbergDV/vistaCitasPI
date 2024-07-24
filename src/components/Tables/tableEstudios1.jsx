@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 
 // Métodos POST usados en la página
 const token = localStorage.getItem("token");
+const id_usuario = parseInt(localStorage.getItem("id_usuario"));
 const url = import.meta.env.VITE_URL_BASE;
 
 const columns = [
@@ -111,7 +112,7 @@ export default function TableEstudios1(params) {
       },
     };
   
-    const response = await fetch(`${url}/price/delete/${id_analisis}/2`, options);//Modificar el id de usuario
+    const response = await fetch(`${url}/price/delete/${id_analisis}/${id_usuario}`, options);//Modificar el id de usuario
     if (response.ok) {
       console.log("exito");
       setButton((prevState) => ({
@@ -134,7 +135,7 @@ export default function TableEstudios1(params) {
       },
       body: JSON.stringify({
         id_analisis: analisis,
-        id_usuario: 2, //ID del usuario en la secion, hacer dinamico una vez hecho el componente login
+        id_usuario: id_usuario, //ID del usuario en la secion, hacer dinamico una vez hecho el componente login
       }),
     };
 

@@ -4,7 +4,7 @@ import "../styles/formHistorialResultados.css";
 import { FaSearch } from "react-icons/fa";
 import TableHistorialResultados from "../Tables/tableHistorialResultados";
 
-const id_usuario = 2; //SE DEFINE EN EL LOGIN
+const id_usuario = parseInt(localStorage.getItem("id_usuario")); //SE DEFINE EN EL LOGIN
 
 const url = import.meta.env.VITE_URL_BASE;
 const token = localStorage.getItem("token");

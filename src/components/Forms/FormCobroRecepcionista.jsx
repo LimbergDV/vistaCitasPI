@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 // Métodos GET usados en la página
 const token = localStorage.getItem("token");
 const url = import.meta.env.VITE_URL_BASE;
+const id_usuario = parseInt(localStorage.getItem("id_usuario"));
 
 const options = {
   method: "GET",
@@ -124,7 +125,7 @@ function FormCobroRecepcionista() {
       };
 
       const response = await fetch(
-        `${url}/price/deleteAll/2`,
+        `${url}/price/deleteAll/${id_usuario}`,
         options
       );
 

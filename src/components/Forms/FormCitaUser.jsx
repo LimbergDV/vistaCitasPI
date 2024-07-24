@@ -7,6 +7,7 @@ import { fetchData } from "../../fetchData";
 
 // Métodos GET usados en la página
 const token = localStorage.getItem("token");
+const id_usuario = parseInt(localStorage.getItem("id_usuario"));
 const url = import.meta.env.VITE_URL_BASE;
 const options = {
   method: "GET",
@@ -129,12 +130,11 @@ function FormCitaUser() {
         formCita.id_analisis = 1;
       }
       const formData = new FormData();
-      formData.append("id_usuario", 1);
+      formData.append("id_usuario", id_usuario);
       formData.append("id_paciente", resPacientes.id_paciente);
       formData.append("id_horario_atencion", formHorario.horario_inicio);
       formData.append("id_analisis", formCita.id_analisis);
       formData.append("solicitud_estudios", file);
-      formData.append("id_cotizacion", 1);
       formData.append("fecha", formCita.fecha);
 
       const respo = await fetch(`${url}/appointments/add/`, {

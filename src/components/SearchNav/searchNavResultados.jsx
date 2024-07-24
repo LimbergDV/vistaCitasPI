@@ -27,7 +27,7 @@ function SearchNavResultados({ onSearchData, resource }) {
           Swal.fire({
             position: "center",
             icon: "info",
-            title: "No se encontó el análisis",
+            title: "No se encontó coincidencias",
             showConfirmButton: false,
             timer: 1500
           });
@@ -51,7 +51,7 @@ function SearchNavResultados({ onSearchData, resource }) {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    onSearch(parseInt(query));
+    onSearch(query);
   };
 
   return (
