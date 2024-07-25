@@ -1,5 +1,6 @@
 import logo from '../images/WhatsApp Image 2024-06-12 at 06.38-Photoroom.jpg';
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -17,17 +18,21 @@ import { SlChemistry } from "react-icons/sl";
 import { IoIosPerson } from "react-icons/io";
 import { TfiWrite } from "react-icons/tfi";
 import { IoPersonCircle } from "react-icons/io5";
+import { GrLogin } from "react-icons/gr";
 
 const pages = [
-  { name: 'Comenzar Consulta', icon: <TfiWrite /> },
-  { name: 'Iniciar Sesión', icon: <IoPersonCircle />}
+  { name: 'Inicio', icon: <HomeIcon />, path: '/' },
+  { name: 'Servicios', icon: <SlChemistry />, path: '/catalogoA' },
+  { name: 'Citas', icon: <TfiWrite />, path: '/citasAgendadasA' },
+  { name: 'Salir', icon: <GrLogin />, path: '/loginA' }
 ];
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Logout'];
 
 function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -36,8 +41,11 @@ function NavBar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (path) => {
     setAnchorElNav(null);
+    if (path) {
+      navigate(path);
+    }
   };
 
   const handleCloseUserMenu = () => {
@@ -84,13 +92,13 @@ function NavBar() {
                 horizontal: 'left',
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+              onClose={() => handleCloseNavMenu(null)}
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                <MenuItem key={page.name} onClick={() => handleCloseNavMenu(page.path)}>
                   <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
@@ -112,7 +120,7 @@ function NavBar() {
             {pages.map((page) => (
               <Button
                 key={page.name}
-                onClick={handleCloseNavMenu}
+                onClick={() => handleCloseNavMenu(page.path)}
                 sx={{ my: 2, color: 'white', display: 'flex', alignItems: 'right', mx: 2 }}
                 startIcon={page.icon}
               >

@@ -18,14 +18,13 @@ import { SlChemistry } from "react-icons/sl";
 import { IoIosPerson } from "react-icons/io";
 import { TfiWrite } from "react-icons/tfi";
 import { IoPersonCircle } from "react-icons/io5";
-import { GrLogin } from "react-icons/gr";
 
 const pages = [
   { name: 'Inicio', icon: <HomeIcon />, path: '/' },
   { name: 'Servicios', icon: <SlChemistry />, path: '/catalogo' },
   { name: 'Paciente', icon: <IoIosPerson />, path: '/administrarPerfil' },
   { name: 'Comenzar Consulta', icon: <TfiWrite />, path: '/consulta' },
-  { name: 'Salir', icon: <GrLogin />, path: '/login' }
+  { name: 'Iniciar Sesión', icon: <IoPersonCircle />, path: '/login' }
 ];
 
 const settings = ['Logout'];
