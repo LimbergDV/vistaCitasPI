@@ -1,6 +1,5 @@
 import logo from '../images/WhatsApp Image 2024-06-12 at 06.38-Photoroom.jpg';
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -19,11 +18,12 @@ import { IoIosPerson } from "react-icons/io";
 import { TfiWrite } from "react-icons/tfi";
 import { IoPersonCircle } from "react-icons/io5";
 import { GrLogin } from "react-icons/gr";
+import { useNavigate } from 'react-router-dom';
 
 const pages = [
   { name: 'Inicio', icon: <HomeIcon />, path: '/' },
   { name: 'Servicios', icon: <SlChemistry />, path: '/catalogo' },
-  { name: 'Paciente', icon: <IoIosPerson />, path: '/administrarPerfil' },
+  { name: 'Perfil', icon: <IoIosPerson />, path: "/administrarPerfil" },
   { name: 'Comenzar Consulta', icon: <TfiWrite />, path: '/consulta' },
   { name: 'Salir', icon: <GrLogin />, path: '/login' }
 ];

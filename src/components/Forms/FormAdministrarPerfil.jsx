@@ -36,7 +36,7 @@ function Principal() {
     };
 
     getDataUser();
-  }, []);
+  }, [formUserData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
