@@ -25,6 +25,7 @@ const pages = [
   { name: 'Servicios', icon: <SlChemistry />, path: '/catalogo' },
   { name: 'Perfil', icon: <IoIosPerson />, path: "/administrarPerfil" },
   { name: 'Comenzar Consulta', icon: <TfiWrite />, path: '/consulta' },
+  { name: 'Cotizar', icon: <MdOutlineAttachMoney />, path: '/cotizacion' },
   { name: 'Salir', icon: <GrLogin />, path: '/login' }
 ];
 

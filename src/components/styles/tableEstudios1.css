@@ -1,0 +1,20 @@
+.searchStudy{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -.5%; 
+    margin-right: 45%;
+}
+
+input{
+    padding: 10px;
+    margin-left: 3%;
+    width: 30%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #C2BEBE;
+    outline: none;
+    color: black;
+
+}

@@ -19,11 +19,13 @@ import { IoIosPerson } from "react-icons/io";
 import { TfiWrite } from "react-icons/tfi";
 import { IoPersonCircle } from "react-icons/io5";
 import { GrLogin } from "react-icons/gr";
+import { MdFileUpload } from "react-icons/md";
 
 const pages = [
   { name: 'Inicio', icon: <HomeIcon />, path: '/' },
   { name: 'Servicios', icon: <SlChemistry />, path: '/catalogoA' },
   { name: 'Citas', icon: <TfiWrite />, path: '/citasAgendadasA' },
+  { name: 'Cargar Resultados', icon: <MdFileUpload />, path: '/citasAgendadasA' },
   { name: 'Salir', icon: <GrLogin />, path: '/loginA' }
 ];
 
