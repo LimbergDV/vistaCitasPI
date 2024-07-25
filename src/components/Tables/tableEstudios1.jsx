@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import '../styles/tableEstudios1.css'
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -168,12 +169,14 @@ export default function TableEstudios1(params) {
     <>
       <div>
         <input
+          className="searchStudy"
           type="text"
           placeholder="Buscar..."
           value={filterText}
           onChange={(e) => setFilterText(e.target.value)}
         />
       </div>
+      <br />
       <Paper sx={{ width: "100%", height: "100vh", overflow: "hidden" }}>
         <TableContainer sx={{ width: "100%", height: "100vh" }}>
           <Table stickyHeader aria-label="sticky table">
