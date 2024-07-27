@@ -25,7 +25,7 @@ const pages = [
   { name: 'Inicio', icon: <HomeIcon />, path: '/' },
   { name: 'Servicios', icon: <SlChemistry />, path: '/catalogoA' },
   { name: 'Citas', icon: <TfiWrite />, path: '/citasAgendadasA' },
-  { name: 'Cargar Resultados', icon: <MdFileUpload />, path: '/citasAgendadasA' },
+  { name: 'Cargar Resultados', icon: <MdFileUpload />, path: '/analisis' },
   { name: 'Salir', icon: <GrLogin />, path: '/loginA' }
 ];
 

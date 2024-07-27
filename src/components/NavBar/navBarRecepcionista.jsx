@@ -24,7 +24,7 @@ import { MdOutlineAttachMoney } from "react-icons/md";
 const pages = [
   { name: 'Inicio', icon: <HomeIcon />, path: '/' },
   { name: 'Servicios', icon: <SlChemistry />, path: '/catalogoR' },
-  { name: 'Citas', icon: <TfiWrite />, path: '/citasAgendadasR' },
+  { name: 'Citas', icon: <TfiWrite />, path: '/consultaRecepcionista' },
   { name: 'Cotizar', icon: <MdOutlineAttachMoney />, path: '/cotizacionRecepcionista' },
   { name: 'Salir', icon: <GrLogin />, path: '/loginR' }
 ];
