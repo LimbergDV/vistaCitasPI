@@ -19,6 +19,7 @@ import { TfiWrite } from "react-icons/tfi";
 import { IoPersonCircle } from "react-icons/io5";
 import { GrLogin } from "react-icons/gr";
 import { MdOutlineAttachMoney } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 
 const pages = [
   { name: 'Inicio', icon: <HomeIcon />, path: '/' },
