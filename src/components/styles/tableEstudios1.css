@@ -1,12 +1,6 @@
-.searchStudy{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -.5%; 
-    margin-right: 45%;
-}
 
-input{
+
+.searchInput{
     padding: 10px;
     margin-left: 3%;
     width: 30%;

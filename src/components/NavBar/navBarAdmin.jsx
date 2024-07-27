@@ -17,15 +17,18 @@ import HomeIcon from '@mui/icons-material/Home';
 import { SlChemistry } from "react-icons/sl";
 import { IoIosPerson } from "react-icons/io";
 import { TfiWrite } from "react-icons/tfi";
-import { IoPersonCircle } from "react-icons/io5";
 import { GrLogin } from "react-icons/gr";
 import { MdFileUpload } from "react-icons/md";
+import { FaCirclePlus } from "react-icons/fa6";
+import { RiFolderHistoryFill } from "react-icons/ri";
 
 const pages = [
   { name: 'Inicio', icon: <HomeIcon />, path: '/' },
   { name: 'Servicios', icon: <SlChemistry />, path: '/catalogoA' },
   { name: 'Citas', icon: <TfiWrite />, path: '/citasAgendadasA' },
-  { name: 'Cargar Resultados', icon: <MdFileUpload />, path: '/citasAgendadasA' },
+  { name: 'Cargar Resultados', icon: <MdFileUpload />, path: '/cargarResultados' },
+  { name: 'Agregar Análisis', icon: <FaCirclePlus />, path: '/analisis' },
+  { name: 'Historial de pagos', icon: <RiFolderHistoryFill />, path: '/historialPagosA' },
   { name: 'Salir', icon: <GrLogin />, path: '/loginA' }
 ];
 

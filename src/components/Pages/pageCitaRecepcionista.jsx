@@ -6,7 +6,9 @@ import NavBarAdmin from "../NavBar/navBarAdmin";
 import FormCitaRecepcionista from "../Forms/FormCitaRecepcionita";
 import Footer from "../Footer/footer";
 
+
 function PageCitaRecepcionista(){
+    const id_rol = localStorage.getItem("id_rol")
     return(
         <>
         {id_rol == 1? <NavBar/> : id_rol == 2? <NavBarRecepcionista/> : id_rol == 3? <NavBarAdmin /> : <NavBarInvited/>}

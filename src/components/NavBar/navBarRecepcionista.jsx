@@ -20,12 +20,14 @@ import { TfiWrite } from "react-icons/tfi";
 import { IoPersonCircle } from "react-icons/io5";
 import { GrLogin } from "react-icons/gr";
 import { MdOutlineAttachMoney } from "react-icons/md";
+import { RiAdminFill } from "react-icons/ri";
 
 const pages = [
   { name: 'Inicio', icon: <HomeIcon />, path: '/' },
   { name: 'Servicios', icon: <SlChemistry />, path: '/catalogoR' },
   { name: 'Citas', icon: <TfiWrite />, path: '/citasAgendadasR' },
   { name: 'Cotizar', icon: <MdOutlineAttachMoney />, path: '/cotizacionRecepcionista' },
+  { name: 'Administrar Perfil', icon: <RiAdminFill />, path: '/administrarPerfilR' },
   { name: 'Salir', icon: <GrLogin />, path: '/loginR' }
 ];
 

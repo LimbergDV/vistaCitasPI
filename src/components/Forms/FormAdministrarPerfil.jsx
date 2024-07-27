@@ -252,11 +252,12 @@ function Principal() {
               <button className="btn-update" type="submit">
                 Actualizar mi perfil
               </button>
-            </div>
-          </form>
-          <button onClick={() => updatePassword()}>
+              <button className="changePass" onClick={() => updatePassword()}>
             Actualizar contraseña
           </button>
+            </div>
+          </form>
+          
         </div>
       </div>
     </>

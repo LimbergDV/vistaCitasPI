@@ -20,6 +20,9 @@ import { TfiWrite } from "react-icons/tfi";
 import { IoPersonCircle } from "react-icons/io5";
 import { GrLogin } from "react-icons/gr";
 import { MdOutlineAttachMoney } from "react-icons/md";
+import { RiAdminFill } from "react-icons/ri";
+
+
 
 const pages = [
   { name: 'Inicio', icon: <HomeIcon />, path: '/' },
@@ -27,6 +30,7 @@ const pages = [
   { name: 'Paciente', icon: <IoIosPerson />, path: '/administrarPerfil' },
   { name: 'Comenzar Consulta', icon: <TfiWrite />, path: '/consulta' },
   { name: 'Cotizar', icon: <MdOutlineAttachMoney />, path: '/cotizacion' },
+  { name: 'Administrar perfil', icon: <RiAdminFill />, path: '/administrarPerfil' },
   { name: 'Salir', icon: <GrLogin />, path: '/login' }
 ];
 

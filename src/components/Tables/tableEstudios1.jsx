@@ -167,9 +167,9 @@ export default function TableEstudios1(params) {
 
   return (
     <>
-      <div>
+      <div className="searchStudy">
         <input
-          className="searchStudy"
+          className="searchInput"
           type="text"
           placeholder="Buscar..."
           value={filterText}
