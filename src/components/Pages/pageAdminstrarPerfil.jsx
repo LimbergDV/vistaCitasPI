@@ -5,16 +5,25 @@ import NavBarAdmin from "../NavBar/navBarAdmin";
 import FormAdministrarPerfil from "../Forms/FormAdministrarPerfil";
 import NavBarInvited from "../NavBar/navBarInvited";
 
-function PageAdministrarPerfil(){
-    const id_rol = localStorage.getItem("id_rol");
+function PageAdministrarPerfil() {
 
-    return(
-        <>
-        {id_rol == 1? <NavBar/> : id_rol == 2? <NavBarRecepcionista/> : id_rol == 3? <NavBarAdmin /> : <NavBarInvited/>}
-        <br /> <br />
-        <FormAdministrarPerfil/>
-        </>
-    )
+  const id_rol = localStorage.getItem("id_rol");
+
+  return (
+    <>
+      {id_rol == 1 ? (
+        <NavBar />
+      ) : id_rol == 2 ? (
+        <NavBarRecepcionista />
+      ) : id_rol == 3 ? (
+        <NavBarAdmin />
+      ) : (
+        <NavBarInvited />
+      )}
+      <br /> <br />
+      <FormAdministrarPerfil />
+    </>
+  );
 }
 
-export default PageAdministrarPerfil
+export default PageAdministrarPerfil;
