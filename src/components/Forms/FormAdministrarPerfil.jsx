@@ -100,7 +100,9 @@ function Principal() {
       },
     });
 
-    if (formValues[0] === "") {
+    console.log(formValues);
+
+    if (formValues[0] == "") {
       Swal.fire({
         position: "center",
         icon: "info",
@@ -252,12 +254,12 @@ function Principal() {
               <button className="btn-update" type="submit">
                 Actualizar mi perfil
               </button>
-              <button className="changePass" onClick={() => updatePassword()}>
-            Actualizar contraseña
-          </button>
+              
             </div>
           </form>
-          
+          <button className="changePass" onClick={() => updatePassword()}>
+            Actualizar contraseña
+          </button>
         </div>
       </div>
     </>

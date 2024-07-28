@@ -22,7 +22,7 @@ import { IoPersonCircle } from "react-icons/io5";
 const pages = [
   { name: 'Inicio', icon: <HomeIcon />, path: '/' },
   { name: 'Servicios', icon: <SlChemistry />, path: '/login' },
-  { name: 'Paciente', icon: <IoIosPerson />, path: '/login' },
+  { name: 'Perfil', icon: <IoIosPerson />, path: '/login' },
   { name: 'Comenzar Consulta', icon: <TfiWrite />, path: '/login' },
   { name: 'Iniciar Sesión', icon: <IoPersonCircle />, path: '/login' }
 ];
