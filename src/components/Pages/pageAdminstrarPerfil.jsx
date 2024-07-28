@@ -4,6 +4,7 @@ import NavBarRecepcionista from "../NavBar/navBarRecepcionista";
 import NavBarAdmin from "../NavBar/navBarAdmin";
 import FormAdministrarPerfil from "../Forms/FormAdministrarPerfil";
 import NavBarInvited from "../NavBar/navBarInvited";
+import Footer from "../Footer/footer";
 
 function PageAdministrarPerfil() {
 
@@ -22,6 +23,7 @@ function PageAdministrarPerfil() {
       )}
       <br /> <br />
       <FormAdministrarPerfil />
+      <Footer/>
     </>
   );
 }

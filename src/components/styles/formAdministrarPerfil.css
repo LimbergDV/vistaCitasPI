@@ -93,3 +93,64 @@ label {
   margin-top: -2%;
   margin-bottom: 0;
 }
+
+@media (max-width: 768px) {
+  .principal-section-title {
+    font-size: 20px;
+    margin-left: 5%;
+    width: 100%;
+    text-align: center;
+  }
+
+  .principal-form input,
+  .principal-form select {
+    width: 100%;
+    margin-bottom: 80px; 
+  }
+
+  .principal-input-group {
+    flex-direction: column;
+    gap: 30px; 
+    margin: 20px 0;
+    height: auto;
+  }
+
+  .btn-update-container {
+    flex-direction: column;
+    margin-top: 240px;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .principal-title {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .principal-section-title {
+    font-size: 18px;
+    padding-left: 2%;
+    width: 100%;
+    text-align: center;
+  }
+
+  .principal-form .principal-input-group {
+    margin: 10px 0;
+    gap: 30px; 
+  }
+
+  .principal-form input,
+  .principal-form select {
+    margin-bottom: 20px; 
+  }
+
+  .btn-update-container {
+    flex-direction: column;
+    gap: 15px; 
+  }
+
+  .principal-input-group > div {
+    width: 100%;
+  }
+}
