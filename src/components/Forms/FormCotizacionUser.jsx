@@ -2,7 +2,6 @@ import React from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import "../styles/formCotizacionUser.css";
-import TableHistorialResultados from "../Tables/tableHistorialResultados";
 import TableCotizacionUser from "../Tables/tableCotizacionUser";
 import { useState } from "react";
 

@@ -13,11 +13,11 @@
 }
 
 .form-cotizacion-inputs {
-    position: relative;
+    position: fixed;
+    right: 20px; 
+    top: 220px; 
     display: flex;
     flex-direction: column;
-    margin-left: 75%;
-    margin-top: -10%;
     gap: 20px;
 }
 
@@ -61,7 +61,10 @@
 
 @media (max-width: 600px) {
     .form-cotizacion-inputs {
+        position: static; 
         flex-direction: column;
+        margin-left: 0;
+        margin-top: 20px;
     }
 
     .form-cotizacion-input-group {
