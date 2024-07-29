@@ -15,14 +15,15 @@ function FormHistorialPagos(){
     return(
         <>
         <div className="principal-Container">
-        <TableHistorialPagos active={flag} setActive={setFlag}/>
-        <div className="unique-btn">
-            <button className="print-btn" onClick={()=> handleClick()}>
-                <MdLocalPrintshop className="icon-print"/>
-            </button>
-        </div>
+            <div className="fixed-button">
+                <button className="print-btn" onClick={() => handleClick()}>
+                    <MdLocalPrintshop className="icon-print"/>
+                </button>
+            </div>
+            <TableHistorialPagos active={flag} setActive={setFlag}/>
         </div>
         </>
     )
+    
 }
 export default FormHistorialPagos
