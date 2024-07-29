@@ -249,6 +249,7 @@ function Principal() {
                 <div></div>
               </div>
             </div>
+
             <div></div>
             <div className="btn-update-container">
               <button className="btn-update" type="submit">
@@ -257,9 +258,13 @@ function Principal() {
               
             </div>
           </form>
+
+          <div className="btn-update-container2">
           <button className="changePass" onClick={() => updatePassword()}>
             Actualizar contraseña
           </button>
+
+          </div>
         </div>
       </div>
     </>

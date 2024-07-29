@@ -7,6 +7,7 @@ import img2 from "../images/prevencion-masculino.png"
 import img3 from "../images/BIOLOGIA-MOLECULAR-3.png"
 import img4 from "../images/CHECK-UP-VIP-WEB-3.png"
 import img5 from "../images/perfil-activa-2.png"
+import img6 from "../images/descuentoUP.png"
 
 
 
@@ -40,7 +41,7 @@ function Carousel (){
         <img src={img5}/>
         </div>
         <div>
-          
+          <img src={img6} />
         </div>
       </Slider>
     </div>
