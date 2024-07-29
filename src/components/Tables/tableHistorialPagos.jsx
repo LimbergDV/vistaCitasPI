@@ -108,7 +108,7 @@ export default function TableHistorialPagos({ active, setActive }) {
                   align={column.align}
                   style={{
                     minWidth: column.minWidth,
-                    backgroundColor: "#C2BEBE",
+                    backgroundColor: "#C2BEBE", fontWeight: 'bold'
                   }}
                 >
                   {column.label}

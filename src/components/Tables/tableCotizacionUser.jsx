@@ -110,6 +110,7 @@ export default function TableCotizacionUser({ onTotal }) {
                   style={{
                     minWidth: column.minWidth,
                     backgroundColor: "#C2BEBE",
+                    fontWeight: 'bold'
                   }}
                 >
                   {column.label}

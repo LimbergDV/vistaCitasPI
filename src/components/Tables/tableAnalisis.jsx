@@ -62,6 +62,7 @@ export default function TableAnalisis({ data, actionE, actionD }) {
                   style={{
                     minWidth: column.minWidth,
                     backgroundColor: "#C2BEBE",
+                    fontWeight: 'bold'
                   }}
                 >
                   {column.label}

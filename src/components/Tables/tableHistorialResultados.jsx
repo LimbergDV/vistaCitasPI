@@ -85,7 +85,7 @@ export default function TableHistorialResultados({data}) {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth, backgroundColor: '#C2BEBE' }}
+                  style={{ minWidth: column.minWidth, backgroundColor: '#C2BEBE', fontWeight: 'bold' }}
                 >
                   {column.label}
                 </TableCell>

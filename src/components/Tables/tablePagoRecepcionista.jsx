@@ -84,6 +84,7 @@ export default function TablePagoRecepcionista({ onTotal }) {
                   style={{
                     minWidth: column.minWidth,
                     backgroundColor: "#C2BEBE",
+                    fontWeight: 'bold'
                   }}
                 >
                   {column.label}

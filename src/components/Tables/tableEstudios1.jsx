@@ -186,7 +186,7 @@ export default function TableEstudios1(params) {
                   <TableCell
                     key={column.id}
                     align={column.align}
-                    style={{ minWidth: column.minWidth }}
+                    style={{ minWidth: column.minWidth, fontWeight: 'bold' }}
                   >
                     {column.label}
                   </TableCell>
