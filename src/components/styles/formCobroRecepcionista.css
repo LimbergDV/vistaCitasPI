@@ -165,6 +165,15 @@
     height: 45px;
     margin-top: 24px;
   }
+
+  .form-cotizacion-inputs1 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 75%;
+    margin-top: -29vh;
+    gap: 20px;
+}
   
   @media (max-width: 600px) {
     .customCotizacionInputs {

@@ -309,8 +309,8 @@ function FormCobroRecepcionista() {
               <div className="customCotizacionSearch">
                 <h2>Análisis escogidos</h2>
                 <TablePagoRecepcionista onTotal={handleTotal} />
-                <div className="form-cotizacion-inputs">
-                  <div className="form-cotizacion-input-group">
+                <div className="form-cotizacion-inputs1">
+                  <div className="form-cotizacion-input-group1">
                     <label>Subtotal:</label>
                     <input
                       type="text"
@@ -328,7 +328,7 @@ function FormCobroRecepcionista() {
                       value={totalData.total}
                     />
                   </div>
-                  <button className="form-cotizacion-button" type="submit">
+                  <button className="form-cotizacion-button1" type="submit">
                     Cobrar
                   </button>
                 </div>
