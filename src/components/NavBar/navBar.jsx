@@ -21,6 +21,7 @@ import { IoPersonCircle } from "react-icons/io5";
 import { GrLogin } from "react-icons/gr";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { RiAdminFill } from "react-icons/ri";
+import { MdContentPasteSearch } from "react-icons/md";
 
 
 
@@ -28,9 +29,10 @@ const pages = [
   { name: 'Inicio', icon: <HomeIcon />, path: '/' },
   { name: 'Servicios', icon: <SlChemistry />, path: '/catalogo' },
   { name: 'Paciente', icon: <IoIosPerson />, path: '/administrarPerfil' },
-  { name: 'Comenzar Consulta', icon: <TfiWrite />, path: '/consulta' },
+  { name: 'Programar Cita', icon: <TfiWrite />, path: '/consulta' },
   { name: 'Cotizar', icon: <MdOutlineAttachMoney />, path: '/cotizacion' },
   { name: 'Administrar perfil', icon: <RiAdminFill />, path: '/administrarPerfil' },
+  { name: 'Resultados', icon: <MdContentPasteSearch />, path: '/historialResultados' },
   { name: 'Salir', icon: <GrLogin />, path: '/login' }
 ];
 

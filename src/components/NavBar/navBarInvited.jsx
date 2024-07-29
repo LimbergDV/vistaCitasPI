@@ -23,7 +23,7 @@ const pages = [
   { name: 'Inicio', icon: <HomeIcon />, path: '/' },
   { name: 'Servicios', icon: <SlChemistry />, path: '/login' },
   { name: 'Perfil', icon: <IoIosPerson />, path: '/login' },
-  { name: 'Comenzar Consulta', icon: <TfiWrite />, path: '/login' },
+  { name: 'Programar Cita', icon: <TfiWrite />, path: '/login' },
   { name: 'Iniciar Sesión', icon: <IoPersonCircle />, path: '/login' }
 ];
 
