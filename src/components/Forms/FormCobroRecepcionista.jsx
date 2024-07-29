@@ -1,3 +1,4 @@
+//Molécula
 import React from "react";
 import { FaCircleInfo } from "react-icons/fa6";
 import "../styles/formCobroRecepcionista.css";

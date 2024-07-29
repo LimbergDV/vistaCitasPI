@@ -1,3 +1,4 @@
+//Molécula
 import React from "react";
 import "../styles/footer.css";
 import img from "../images/WhatsApp Image 2024-06-12 at 06.38-Photoroom.jpg"

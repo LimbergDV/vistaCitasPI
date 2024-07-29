@@ -1,3 +1,4 @@
+//Molécula
 import React from 'react';
 import '../styles/moreSection.css'; 
 import imgregister from "../images/registrarse.png"

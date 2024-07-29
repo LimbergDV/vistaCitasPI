@@ -1,3 +1,4 @@
+//Molécula
 import React from "react";
 import TableHistorialPagos from "../Tables/tableHistorialPagos";
 import "../styles/formHistorialPagos.css";

@@ -1,3 +1,4 @@
+//Molécula
 import React from "react";
 import "../styles/cardCatalogo.css";
 import { useNavigate } from "react-router-dom";

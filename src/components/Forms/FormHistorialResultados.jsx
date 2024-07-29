@@ -1,3 +1,4 @@
+//Molécula
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import "../styles/formHistorialResultados.css";

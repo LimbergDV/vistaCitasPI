@@ -1,3 +1,4 @@
+//Molécula
 import React from "react";
 import "../styles/formAdministrarPerfil.css";
 import { useState, useEffect } from "react";

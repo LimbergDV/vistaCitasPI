@@ -1,3 +1,4 @@
+//Molécula
 import React from "react";
 import '../styles/informationalSection.css'
 import imglab from "../images/laboratorista.png"

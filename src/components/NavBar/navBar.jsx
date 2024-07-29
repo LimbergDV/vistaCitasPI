@@ -1,3 +1,4 @@
+//Molécula
 import logo from '../images/WhatsApp Image 2024-06-12 at 06.38-Photoroom.jpg';
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';

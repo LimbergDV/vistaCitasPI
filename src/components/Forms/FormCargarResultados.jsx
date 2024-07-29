@@ -1,3 +1,4 @@
+//Molécula
 import React, { useState } from "react";
 import "../styles/formCargarResultados.css";
 import SearchNavResultados from "../SearchNav/searchNavResultados";

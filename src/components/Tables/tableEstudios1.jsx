@@ -1,3 +1,4 @@
+//Molécula
 import React, { useState, useEffect } from "react";
 import '../styles/tableEstudios1.css'
 import Paper from "@mui/material/Paper";

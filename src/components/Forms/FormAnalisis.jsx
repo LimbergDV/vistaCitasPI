@@ -1,3 +1,4 @@
+//Molécula
 import React, { useEffect } from "react";
 import "../styles/formAnalisis.css";
 import TableHistorialPagos from "../Tables/tableHistorialPagos";
