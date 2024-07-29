@@ -21,6 +21,7 @@ import { IoPersonCircle } from "react-icons/io5";
 import { GrLogin } from "react-icons/gr";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { RiAdminFill } from "react-icons/ri";
+import { RiFolderHistoryFill } from "react-icons/ri";
 
 const pages = [
   { name: 'Inicio', icon: <HomeIcon />, path: '/' },
@@ -28,6 +29,7 @@ const pages = [
   { name: 'Citas', icon: <TfiWrite />, path: '/consultaRecepcionista' },
   { name: 'Cotizar', icon: <MdOutlineAttachMoney />, path: '/cotizacionRecepcionista' },
   { name: 'Administrar Perfil', icon: <RiAdminFill />, path: '/administrarPerfilR' },
+  { name: 'Historial de Pagos', icon: <RiFolderHistoryFill />, path: '/historialPagosR' },
   { name: 'Salir', icon: <GrLogin />, path: '/loginR' }
 ];
 
