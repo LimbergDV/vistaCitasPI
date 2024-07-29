@@ -59,10 +59,7 @@ function CardCatalogo2() {
           <div className="card-content">
             <h3>Microbiología Médica</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ut
-              nulla vel sit reprehenderit, unde molestiae vero magni veritatis
-              architecto minus mollitia distinctio iste dignissimos voluptatem,
-              neque pariatur cum! Expedita!
+            La microbiología médica estudia microorganismos que causan enfermedades en humanos. Identifica bacterias, virus, hongos y parásitos mediante cultivos y pruebas específicas para diagnosticar infecciones y guiar tratamientos adecuados.
             </p>
             <a href="" className="btn-4" onClick={handleButtonClick}>
               Ver Estudios
@@ -75,10 +72,7 @@ function CardCatalogo2() {
           <div className="card-content">
             <h3>Microbiología Sanitaria</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ut
-              nulla vel sit reprehenderit, unde molestiae vero magni veritatis
-              architecto minus mollitia distinctio iste dignissimos voluptatem,
-              neque pariatur cum! Expedita!
+            La microbiología sanitaria se enfoca en la detección y control de microorganismos que se conservan en el medio ambiente, agua y alimentos. Garantiza la seguridad sanitaria y previene enfermedades mediante el análisis de contaminantes microbiológicos.
             </p>
             <a href="" className="btn-5" onClick={handleButtonClick2}>
               Ver Estudios
@@ -91,10 +85,7 @@ function CardCatalogo2() {
           <div className="card-content">
             <h3>Citología e Histopatologías</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ut
-              nulla vel sit reprehenderit, unde molestiae vero magni veritatis
-              architecto minus mollitia distinctio iste dignissimos voluptatem,
-              neque pariatur cum! Expedita!
+            La citología e histopatología estudian células y tejidos para diagnosticar enfermedades. La citología analiza células individuales, mientras que la histopatología examina la estructura de los tejidos para detectar anomalías y patologías.
             </p>
             <a href="" className="btn-6" onClick={handleButtonClick3}>
               Ver Estudios

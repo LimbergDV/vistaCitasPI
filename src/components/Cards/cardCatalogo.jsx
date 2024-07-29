@@ -60,10 +60,7 @@ function CardCatalogo() {
           <div className="card-content">
             <h3>Química Clinica</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ut
-              nulla vel sit reprehenderit, unde molestiae vero magni veritatis
-              architecto minus mollitia distinctio iste dignissimos voluptatem,
-              neque pariatur cum! Expedita!
+            La química clínica se enfoca en el análisis de sustancias químicas en la sangre y otros fluidos corporales. Evalúa el estado de salud, diagnostica enfermedades y monitorea tratamientos mediante pruebas como glucosa, colesterol y electrolitos.
             </p>
             <a href="" className="btn-1" onClick={handleButtonClick}>
               Ver Estudios
@@ -76,10 +73,7 @@ function CardCatalogo() {
           <div className="card-content">
             <h3>Biología Molecular</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ut
-              nulla vel sit reprehenderit, unde molestiae vero magni veritatis
-              architecto minus mollitia distinctio iste dignissimos voluptatem,
-              neque pariatur cum! Expedita!
+            La biología molecular en el laboratorio clínico estudia el material genético (ADN y ARN) para detectar enfermedades genéticas e infecciosas. Utiliza técnicas como la PCR para identificar mutaciones y patógenos.
             </p>
             <a href="" className="btn-2" onClick={handleButtonClick2}>
               Ver Estudios
@@ -92,10 +86,7 @@ function CardCatalogo() {
           <div className="card-content">
             <h3>Alérgenos</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe ut
-              nulla vel sit reprehenderit, unde molestiae vero magni veritatis
-              architecto minus mollitia distinctio iste dignissimos voluptatem,
-              neque pariatur cum! Expedita!
+            El análisis de alérgenos identifica sustancias que causan reacciones alérgicas. Incluye pruebas para detectar anticuerpos contra alérgenos comunes como polvo, alimentos y animales, ayudando a diagnosticar alergias.
             </p>
             <a href="" className="btn-3" onClick={handleButtonClick3}>
               Ver Estudios

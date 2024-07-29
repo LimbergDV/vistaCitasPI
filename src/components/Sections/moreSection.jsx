@@ -9,7 +9,7 @@ function MoreSection() {
                 <article className="more-texts">
                     <h1 className="more-subtitle">¡Registrate en nuestro sitio!</h1>
                     <p className="more-paragraph">¿Quieres hacer una cita de un análisis clínico y tener en tu cuenta el historial de tus análisis? <br /> ó ¿Simplemente tener tu propio perfil?</p>
-                    <a href="" className="more-cta">Registrate</a>
+                    <a href="/registrate" className="more-cta">Registrate</a>
                 </article>
                 <figure className="more-figure">
                     <img src={imgregister} className="more-img" alt="" />
