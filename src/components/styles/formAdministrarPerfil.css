@@ -85,12 +85,7 @@
   position: relative;
 }
 
-.btn-update-container2 {
-  position: absolute;
-  top: 70.9%; /* Ajusta según sea necesario */
-  left: 17%; /* Ajusta según sea necesario para ver el botón */
-  margin-left: 10px;
-}
+
 
 label {
   color: #000;
